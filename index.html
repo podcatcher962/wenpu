@@ -102,6 +102,15 @@ footer .sp{flex:1 1 auto}
 .topnav button:hover{background:#fffdf8;color:var(--ink)}
 .topnav .sp{flex:1 1 auto}
 .topnav .ver{font-size:11px;color:#a89b86;letter-spacing:.1em}
+.topnav .langbtn{font-size:11px;font-weight:700;letter-spacing:.06em;min-width:34px;
+  color:#8f2f22;background:#f6e7d0;border:1px solid #dcc3a0;border-radius:7px;
+  padding:2px 8px;margin-right:10px;cursor:pointer;font-family:inherit}
+.topnav .langbtn:hover{background:#f0dcc0}
+html[lang=en] .titles h1{font-size:24px;letter-spacing:.05em}
+html[lang=en] .titles p{letter-spacing:.03em}
+html[lang=en] .lab{letter-spacing:.11em}
+html[lang=en] .know-h b{letter-spacing:.02em}
+html[lang=en] .mchip span{letter-spacing:0}
 
 .mwrap{
   background:#f6efe2;border:1px solid #e6dac2;border-left:3px solid var(--cinnabar);
@@ -180,24 +189,25 @@ input[type=number]:focus{outline:none;border-color:#c0a97f}
   <header>
     <div class="seal-logo">纹</div>
     <div class="titles">
-      <h1>纹谱</h1>
-      <p>世界纹样生成器 · 四方连续</p>
+      <h1 data-zh="纹谱" data-en="Wenpu">纹谱</h1>
+      <p data-zh="世界纹样生成器 · 四方连续" data-en="World pattern generator · seamless repeat">世界纹样生成器 · 四方连续</p>
     </div>
     <div class="sp"></div>
     <div class="actions">
-      <button class="btn" id="btnRand">换一个</button>
-      <button class="btn" id="btnSvg">导出 SVG</button>
-      <button class="btn primary" id="btnPng">导出图片</button>
+      <button class="btn" id="btnRand" data-zh="换一个" data-en="Shuffle">换一个</button>
+      <button class="btn" id="btnSvg" data-zh="导出 SVG" data-en="Export SVG">导出 SVG</button>
+      <button class="btn primary" id="btnPng" data-zh="导出图片" data-en="Export image">导出图片</button>
     </div>
   </header>
 
   <nav class="topnav" id="topnav">
-    <button data-doc="help">使用说明</button>
-    <button data-doc="about">关于</button>
-    <button data-doc="license">开源</button>
-    <button data-doc="disclaim">免责</button>
+    <button data-doc="help" data-zh="使用说明" data-en="Guide">使用说明</button>
+    <button data-doc="about" data-zh="关于" data-en="About">关于</button>
+    <button data-doc="license" data-zh="开源" data-en="License">开源</button>
+    <button data-doc="disclaim" data-zh="免责" data-en="Disclaimer">免责</button>
     <span class="sp"></span>
-    <span class="ver">v3.2</span>
+    <button class="langbtn" id="btnLang" title="中文 / English">EN</button>
+    <span class="ver">v3.3</span>
   </nav>
 
   <main>
@@ -210,7 +220,7 @@ input[type=number]:focus{outline:none;border-color:#c0a97f}
     <aside class="panel">
 
       <div class="sec">
-        <div class="lab">用 途<i id="useInfo"></i></div>
+        <div class="lab"><span data-zh="用 途" data-en="USE">用 途</span><i id="useInfo"></i></div>
         <div class="chips" id="uses"></div>
         <div id="cusBox" style="display:none;margin-top:10px">
           <div class="row" style="gap:7px">
@@ -224,7 +234,7 @@ input[type=number]:focus{outline:none;border-color:#c0a97f}
       </div>
 
       <div class="sec">
-        <div class="lab">地 域<i>先选一处</i></div>
+        <div class="lab"><span data-zh="地 域" data-en="REGION">地 域</span><i data-zh="先选一处" data-en="pick one">先选一处</i></div>
         <div class="chips" id="mgroups"></div>
         <div class="mwrap">
           <div id="motifs"></div>
@@ -233,68 +243,68 @@ input[type=number]:focus{outline:none;border-color:#c0a97f}
       </div>
 
       <div class="sec">
-        <div class="lab">题 字<i id="txtHint">写上去即显示</i></div>
-        <input type="text" id="txt" maxlength="20" placeholder="如：月照松间">
+        <div class="lab"><span data-zh="题 字" data-en="INSCRIPTION">题 字</span><i id="txtHint" data-zh="写上去即显示" data-en="shows as you type">写上去即显示</i></div>
+        <input type="text" id="txt" maxlength="20" placeholder="如：月照松间" data-en-ph="e.g. Moon over the pines">
         <div class="row" style="margin-top:9px;flex-wrap:wrap">
-          <label class="tog"><input type="checkbox" id="txtOn"> 显示</label>
-          <label class="tog"><input type="checkbox" id="txtBg" checked> 衬纸底</label>
-          <label class="tog"><input type="checkbox" id="sealOn"> 印章</label>
+          <label class="tog"><input type="checkbox" id="txtOn"> <span data-zh="显示" data-en="Show">显示</span></label>
+          <label class="tog"><input type="checkbox" id="txtBg" checked> <span data-zh="衬纸底" data-en="Paper slip">衬纸底</span></label>
+          <label class="tog"><input type="checkbox" id="sealOn"> <span data-zh="印章" data-en="Seal">印章</span></label>
         </div>
         <div class="chips" id="pos" style="margin-top:8px"></div>
       </div>
 
       <div class="sec">
-        <div class="lab">气 质<i>一键换风格</i></div>
+        <div class="lab"><span data-zh="气 质" data-en="MOOD">气 质</span><i data-zh="一键换风格" data-en="one-click style">一键换风格</i></div>
         <div class="chips" id="moods"></div>
       </div>
 
       <div class="sec">
-        <div class="lab">配 色</div>
+        <div class="lab" data-zh="配 色" data-en="COLORS">配 色</div>
         <div class="pairs" id="pairs"></div>
-        <div class="lab" style="margin-top:11px;letter-spacing:.14em">纹 色 / 底 色</div>
+        <div class="lab" style="margin-top:11px;letter-spacing:.14em" data-zh="纹 色 / 底 色" data-en="INK / PAPER">纹 色 / 底 色</div>
         <div class="sws" id="fgs"></div>
         <div class="sws" id="bgs" style="margin-top:7px"></div>
         <div class="row" style="margin-top:10px;gap:8px">
-          <button class="btn" id="btnPick" style="flex:1;font-size:12.5px">从照片取色</button>
-          <button class="btn" id="pickMode" style="flex:0 0 auto;font-size:12.5px;min-width:96px">设为纹色</button>
+          <button class="btn" id="btnPick" style="flex:1;font-size:12.5px" data-zh="从照片取色" data-en="Pick color from photo">从照片取色</button>
+          <button class="btn" id="pickMode" style="flex:0 0 auto;font-size:12.5px;min-width:96px" data-zh="设为纹色" data-en="Set as ink">设为纹色</button>
         </div>
         <div class="chips" id="picked" style="margin-top:8px"></div>
         <input type="file" id="filePick" accept="image/*" style="display:none">
-        <div class="hint" style="margin-top:4px">取色在本地读取图片，不上传。拍到布、砖、旧木器的颜色，直接用。</div>
+        <div class="hint" style="margin-top:4px" data-zh="取色在本地读取图片，不上传。拍到布、砖、旧木器的颜色，直接用。" data-en="Colors are read locally, nothing is uploaded. Photograph cloth, brick or old wood and use the color straight away.">取色在本地读取图片，不上传。拍到布、砖、旧木器的颜色，直接用。</div>
       </div>
 
       <div class="sec">
-        <div class="lab">密 度 / 线 宽</div>
-        <div class="row"><span class="k">格数</span><input type="range" id="cells" min="4" max="22" step="1"><span class="val" id="cellsV"></span></div>
-        <div class="row"><span class="k">线宽</span><input type="range" id="lw" min="2" max="11" step="1"><span class="val" id="lwV"></span></div>
-        <div class="row" style="margin-top:2px"><span class="k">边距</span><input type="range" id="margin" min="0" max="14" step="1"><span class="val" id="marginV"></span></div>
+        <div class="lab" data-zh="密 度 / 线 宽" data-en="DENSITY / LINE">密 度 / 线 宽</div>
+        <div class="row"><span class="k" data-zh="格数" data-en="Cells">格数</span><input type="range" id="cells" min="4" max="22" step="1"><span class="val" id="cellsV"></span></div>
+        <div class="row"><span class="k" data-zh="线宽" data-en="Weight">线宽</span><input type="range" id="lw" min="2" max="11" step="1"><span class="val" id="lwV"></span></div>
+        <div class="row" style="margin-top:2px"><span class="k" data-zh="边距" data-en="Margin">边距</span><input type="range" id="margin" min="0" max="14" step="1"><span class="val" id="marginV"></span></div>
         <div class="row" style="margin-top:6px;flex-wrap:wrap">
-          <label class="tog"><input type="checkbox" id="gridOn"> 图纸网格</label>
-          <label class="tog"><input type="checkbox" id="faintOn"> 淡显描摹</label>
+          <label class="tog"><input type="checkbox" id="gridOn"> <span data-zh="图纸网格" data-en="Grid">图纸网格</span></label>
+          <label class="tog"><input type="checkbox" id="faintOn"> <span data-zh="淡显描摹" data-en="Faint guide">淡显描摹</span></label>
         </div>
       </div>
 
       <div class="sec">
-        <div class="lab">做 旧<i>古纸质感</i></div>
-        <div class="row"><span class="k">强度</span><input type="range" id="age" min="0" max="100" step="1"><span class="val" id="ageV"></span></div>
+        <div class="lab"><span data-zh="做 旧" data-en="AGING">做 旧</span><i data-zh="古纸质感" data-en="old-paper texture">古纸质感</i></div>
+        <div class="row"><span class="k" data-zh="强度" data-en="Level">强度</span><input type="range" id="age" min="0" max="100" step="1"><span class="val" id="ageV"></span></div>
         <div class="chips" id="ages" style="margin-top:5px"></div>
-        <div class="hint" style="margin-top:3px">泛黄、纸颗粒、水渍、四角暗沉。PNG / JPG / PDF 里一起带上；SVG 是矢量线稿，不做旧。</div>
+        <div class="hint" style="margin-top:3px" data-zh="泛黄、纸颗粒、水渍、四角暗沉。PNG / JPG / PDF 里一起带上；SVG 是矢量线稿，不做旧。" data-en="Yellowing, paper grain, water stains, darkened corners. Baked into PNG / JPG / PDF; SVG stays pure vector line art.">泛黄、纸颗粒、水渍、四角暗沉。PNG / JPG / PDF 里一起带上；SVG 是矢量线稿，不做旧。</div>
       </div>
 
       <div class="sec">
-        <div class="lab">接 法<i>对花拼接</i></div>
+        <div class="lab"><span data-zh="接 法" data-en="REPEAT">接 法</span><i data-zh="对花拼接" data-en="seamless joint">对花拼接</i></div>
         <div class="chips" id="syms"></div>
       </div>
 
       <div class="sec" style="padding-bottom:16px">
-        <div class="lab">导 出<i id="expInfo"></i></div>
+        <div class="lab"><span data-zh="导 出" data-en="EXPORT">导 出</span><i id="expInfo"></i></div>
         <div class="chips" id="exps"></div>
         <div class="chips" id="copies" style="margin-top:8px"></div>
         <div class="hint">
           <span id="expSize"></span><br>
-          <b style="font-weight:400">PNG</b> 发社交平台 · <b style="font-weight:400">JPG</b> 体积小 · <b style="font-weight:400">SVG</b> 矢量可印刷 ·
-          <b style="font-weight:400">PDF</b> 按 300dpi 原尺寸打印 · <b style="font-weight:400">透明 PNG</b> 叠到自己照片或 PPT 上 · <b style="font-weight:400">WebP</b> 网页用。要别的尺寸就选「自定义」。<br>
-          <span style="color:#a89b86">全程在本地计算，不上传任何东西。</span>
+          <span data-en-html='<b style="font-weight:400">PNG</b> for social media · <b style="font-weight:400">JPG</b> for smaller files · <b style="font-weight:400">SVG</b> vector, print-ready · <b style="font-weight:400">PDF</b> at 300 dpi, actual size · <b style="font-weight:400">Transparent PNG</b> to lay over your own photos or slides · <b style="font-weight:400">WebP</b> for the web. Need another size? Pick Custom.'><b style="font-weight:400">PNG</b> 发社交平台 · <b style="font-weight:400">JPG</b> 体积小 · <b style="font-weight:400">SVG</b> 矢量可印刷 ·
+          <b style="font-weight:400">PDF</b> 按 300dpi 原尺寸打印 · <b style="font-weight:400">透明 PNG</b> 叠到自己照片或 PPT 上 · <b style="font-weight:400">WebP</b> 网页用。要别的尺寸就选「自定义」。</span><br>
+          <span style="color:#a89b86" data-zh="全程在本地计算，不上传任何东西。" data-en="Everything runs locally. Nothing is uploaded.">全程在本地计算，不上传任何东西。</span>
         </div>
       </div>
 
@@ -302,11 +312,12 @@ input[type=number]:focus{outline:none;border-color:#c0a97f}
   </main>
 
   <footer>
-    <span>© 永远的兰兰 · 兰斋丛编</span>
-    <span>MIT 开源 · 单文件离线可用</span>
+    <span data-zh="© 永远的兰兰 · 兰斋丛编" data-en="© Lanlan Eternal · Lanzhai Collection">© 永远的兰兰 · 兰斋丛编</span>
+    <span data-zh="MIT 开源 · 单文件离线可用" data-en="MIT licensed · single file, works offline">MIT 开源 · 单文件离线可用</span>
     <span class="sp"></span>
     <span id="stat"></span>
   </footer>
+</div>
 </div>
 
 <div class="modal" id="modal" aria-hidden="true">
@@ -341,7 +352,7 @@ function arcPts(cx,cy,r,a0,a1,n){
 }
 var TAU=Math.PI*2;
 
-/* ---------------- 十二母题 ----------------
+/* ---------------- 十二图案元素 ----------------
    gen(T,st) 返回 [{x,y,p}]，定义在一个 T×T 的无缝贴图上。
    渲染时按贴图铺满画布，四周各多铺一圈，保证边缘不断。 */
 function gHui(T,st){
@@ -513,7 +524,7 @@ function gTuanhua(T,st){
   return out;
 }
 
-/* ---------- 新增母题（16 个） ---------- */
+/* ---------- 新增图案元素（16 个） ---------- */
 
 /* 万字纹：卍 四臂各向相邻象限折回 */
 function gWanzi(T,st){
@@ -1100,7 +1111,7 @@ function gTulip(T,st){
 }
 
 
-/* ---------- 第二批母题（20 个） ---------- */
+/* ---------- 第二批图案元素（20 个） ---------- */
 
 /* 十字杵：佛教羯磨杵平面化，四臂各出一股 */
 function gJuchu(T,st){
@@ -3079,7 +3090,7 @@ function gTaegeuk(T,st){
 
 
 /* ---------- 平铺辅助：跨边补画 ---------- */
-/* ==================== 参数化母题家族 ====================
+/* ==================== 参数化图案元素家族 ====================
    一个骨架函数配不同 cfg 就能产出可辨识的不同纹样。
    MOTIFS 里写 gen:mk(fxXxx,{...})。 */
 function mk(f,cfg){return function(T,st){return f(T,st,cfg);};}
@@ -4186,8 +4197,9 @@ function gToraja(T,st){
 }
 
 var GROUPS=[
-  ['all','全部'],['cn','中国'],['jp','日本'],['islam','西亚·中亚'],
-  ['eu','欧洲'],['af','非洲'],['am','美洲'],['ap','亚太']
+  ['all','全部','All'],['cn','中国','China'],['jp','日本','Japan'],
+  ['islam','西亚·中亚','West & Central Asia'],['eu','欧洲','Europe'],
+  ['af','非洲','Africa'],['am','美洲','Americas'],['ap','亚太','Asia-Pacific']
 ];
 var MOTIFS=[
   {id:'hui', name:'回纹', g:'cn', gen:gHui, note:'商周青铜器上的雷纹，一线连绵，民间叫「富贵不断头」',
@@ -4821,7 +4833,7 @@ var MOTIFS=[
   {id:'crosslet', name:'三叶十字', g:'eu', gen:gCrosslet, note:'四端各挑一朵小花，纹章与铁艺通用',
    desc:'十字的四端各挑出一朵小三叶，中世纪纹章学里叫 crosslet。铁艺栏杆、墓碑、教堂门上都用它收边。',
    fit:'铁艺、纹章、石雕'},
-  {id:'oak', name:'橡叶', g:'eu', gen:gOak, note:'橡树叶与橡实，英国乡村装饰的母题',
+  {id:'oak', name:'橡叶', g:'eu', gen:gOak, note:'橡树叶与橡实，英国乡村装饰的图案元素',
    desc:'一片边缘起伏的橡树叶，中脉贯通。橡树在英国象征坚固与王权，木雕、刺绣、壁纸上一路用到现在。',
    fit:'木雕、刺绣、壁纸'},
   {id:'scallop', name:'扇贝纹', g:'eu', gen:gScallop, note:'半圆贝壳加放射肋，朝圣者的标记',
@@ -4842,7 +4854,7 @@ var MOTIFS=[
   {id:'muqarnas', name:'蜂巢拱', g:'islam', gen:gMuqarnas, note:'层层叠落的钟乳拱',
    desc:'一层层缩小的拱叠上去，像蜂巢，也像钟乳。清真寺的穹顶下、门龛里都用它把方与圆接起来。',
    fit:'建筑装饰、纸艺、布景'},
-  {id:'egyptlotus', name:'埃及莲纹', g:'af', gen:gEgyptLotus, note:'尼罗河的蓝莲，柱头与壁画的老母题',
+  {id:'egyptlotus', name:'埃及莲纹', g:'af', gen:gEgyptLotus, note:'尼罗河的蓝莲，柱头与壁画上反复出现的图案',
    desc:'一枚尖头花苞，两侧各卷一片萼，底下一条横托。古埃及的柱头、壁画、首饰上反复出现，象征尼罗河的再生。',
    fit:'壁画、柱头、文创'},
   {id:'tifinagh', name:'提非纳刻纹', g:'af', gen:gTifinagh, note:'柏柏尔人的古文字，几何刻痕',
@@ -5113,8 +5125,8 @@ var MOTIFS=[
    desc:'一排长短不一的竖线，像梳齿，土耳其语叫 tarak。它常出现在地毯的窄边上，取「理清、顺利」。',
    fit:'地毯边、织物、纸品'},
   {id:'elibelinde', name:'钩形纹', g:'islam', gen:mk(fxLattice,{n:2,fill:'hook'}),
-   note:'钩形，安纳托利亚织毯的母题之一',
-   desc:'钩形（elibelinde 原意是「手叉腰」，指母神）是安纳托利亚织毯最古老的母题之一，形如一个钩子挂在菱格里。',
+   note:'钩形，安纳托利亚织毯的图案元素之一',
+   desc:'钩形（elibelinde 原意是「手叉腰」，指母神）是安纳托利亚织毯最古老的图案元素之一，形如一个钩子挂在菱格里。',
    fit:'织毯风、布艺、包装'},
   {id:'atlas', name:'阿特拉斯条', g:'islam', gen:mk(fxStripe,{ang:0,gap:0.34,rail:1}),
    note:'阿特拉斯绸的细条纹，中亚的绸缎',
@@ -5631,28 +5643,424 @@ MOTIFS.sort(function(a,b){ var d=(GORD[a.g]===undefined?99:GORD[a.g])-(GORD[b.g]
 
 /* 用途：尺寸按 300dpi 或平台原生规格定 */
 var USES=[
-  {id:'phone', name:'手机壁纸', W:1179, H:2556, note:'1179×2556 · 竖屏'},
-  {id:'xhs34', name:'小红书竖图', W:1080, H:1440, note:'1080×1440 · 3:4'},
-  {id:'xhs11', name:'小红书方图', W:1080, H:1080, note:'1080×1080 · 1:1'},
-  {id:'card',  name:'名片底纹', W:1050, H:600,  note:'1050×600 · 90×51mm'},
-  {id:'bookmark', name:'书签', W:591, H:1772, note:'50×150mm · 300dpi'},
-  {id:'tape',  name:'纸胶带',   W:2126, H:531,  note:'180×45mm · 300dpi'},
-  {id:'a4',    name:'A4 打印',  W:2480, H:3508, note:'2480×3508 · A4'},
-  {id:'pc',    name:'电脑壁纸', W:2560, H:1440, note:'2560×1440 · 2K'},
-  {id:'tile',  name:'平铺素材', W:1024, H:1024, note:'1024×1024 · 无缝'},
-  {id:'custom',name:'自定义',   W:0,    H:0,    note:'自己填宽高'}
+  {id:'phone', name:'手机壁纸', name_en:'Phone wallpaper', W:1179, H:2556, note:'1179×2556 · 竖屏', note_en:'1179×2556 · portrait'},
+  {id:'xhs34', name:'小红书竖图', name_en:'Social 3:4', W:1080, H:1440, note:'1080×1440 · 3:4', note_en:'1080×1440 · 3:4'},
+  {id:'xhs11', name:'小红书方图', name_en:'Social 1:1', W:1080, H:1080, note:'1080×1080 · 1:1', note_en:'1080×1080 · 1:1'},
+  {id:'card',  name:'名片底纹', name_en:'Business card', W:1050, H:600,  note:'1050×600 · 90×51mm', note_en:'1050×600 · 90×51mm'},
+  {id:'bookmark', name:'书签', name_en:'Bookmark', W:591, H:1772, note:'50×150mm · 300dpi', note_en:'50×150mm · 300dpi'},
+  {id:'tape',  name:'纸胶带', name_en:'Washi tape', W:2126, H:531,  note:'180×45mm · 300dpi', note_en:'180×45mm · 300dpi'},
+  {id:'a4',    name:'A4 打印', name_en:'A4 print', W:2480, H:3508, note:'2480×3508 · A4', note_en:'2480×3508 · A4'},
+  {id:'pc',    name:'电脑壁纸', name_en:'Desktop wallpaper', W:2560, H:1440, note:'2560×1440 · 2K', note_en:'2560×1440 · 2K'},
+  {id:'tile',  name:'平铺素材', name_en:'Tile asset', W:1024, H:1024, note:'1024×1024 · 无缝', note_en:'1024×1024 · seamless'},
+  {id:'custom',name:'自定义', name_en:'Custom', W:0, H:0, note:'自己填宽高', note_en:'enter your own size'}
 ];
 
 var FGS=['#b23a2a','#26221d','#2f5f70','#47694f','#c29238','#8a6a8f','#e8dcc4'];
 var BGS=['#f3e9d6','#fbf8f1','#1b1917','#15242b','#e8e2d4','#f0e2dd','#dfe6e0'];
 var PAIRS=[
-  {n:'朱砂', fg:'#b23a2a', bg:'#f3e9d6'},
-  {n:'墨金', fg:'#c29238', bg:'#1b1917'},
-  {n:'石青', fg:'#2f5f70', bg:'#e8e2d4'},
-  {n:'石绿', fg:'#47694f', bg:'#f3e9d6'},
-  {n:'藕荷', fg:'#8a6a8f', bg:'#f0e2dd'},
-  {n:'雪夜', fg:'#e8dcc4', bg:'#15242b'}
+  {n:'朱砂', n_en:'Cinnabar', fg:'#b23a2a', bg:'#f3e9d6'},
+  {n:'墨金', n_en:'Ink & gold', fg:'#c29238', bg:'#1b1917'},
+  {n:'石青', n_en:'Azurite', fg:'#2f5f70', bg:'#e8e2d4'},
+  {n:'石绿', n_en:'Malachite', fg:'#47694f', bg:'#f3e9d6'},
+  {n:'藕荷', n_en:'Lotus pink', fg:'#8a6a8f', bg:'#f0e2dd'},
+  {n:'雪夜', n_en:'Snow night', fg:'#e8dcc4', bg:'#15242b'}
 ];
+
+var MENU={
+"hui":{"n":"Meander","t":"The thunder scroll on Shang and Zhou bronzes — one unbroken line, called in folk craft 'wealth without end'","d":"A single line folding and turning back on itself, never breaking. It is the commonest ground pattern on Shang and Zhou bronzes; because the character for 'return' was read as 'unending', woven into cloth it came to mean wealth without end. It is still the most useful skeleton pattern there is — window lattice, furniture aprons, brocade borders.","f":"wrapping paper, book covers, window lattice, textile borders"},
+"yunlei":{"n":"Cloud and thunder","t":"On Shang and Zhou ritual bronzes: rounded strokes are cloud, squared strokes are thunder","d":"The rounded version is called cloud, the squared one thunder, and they appear together on ritual bronzes of the Shang and Zhou, usually as the ground beneath a main motif. The two hands later parted ways — one line became the cloud scroll, the other the meander.","f":"bronze-rubbing style wrapping, invitations, ceramics"},
+"wanzi":{"n":"Wan fret","t":"From a Sanskrit auspicious sign, fixed as 'wan' by Empress Wu of Tang; brocade calls it 'wan without end'","d":"A lucky sign that came from Sanskrit; Empress Wu of the Tang fixed it as the character wan, for the fullness of virtue. In brocade the four arms join end to end without a break, which is why weavers call it 'wan without end'. Garden paving and railings use it too.","f":"brocade, window lattice, carpets, wrapping grounds"},
+"fangsheng":{"n":"Double diamond","t":"Two lozenges overlapped; the sheng was the Queen Mother of the West's hair ornament, meaning two hearts joined","d":"Two lozenges stacked into the shape called sheng. Legend makes sheng the ornament worn by Xiwangmu, so the pattern carries two hearts joined and lines that never end. Ming and Qing jewellery, knotwork and garment edges use it densely.","f":"jewellery boxes, invitations, garment edges, knotwork"},
+"lingge":{"n":"Diamond lattice","t":"The skeleton of Warring States lacquer and Han brocade, often with a small flower in each cell","d":"Two sets of diagonals crossing into lozenges — the ground used on Warring States lacquer and Han brocade. A small flower or a tiny diamond usually sits in each cell, and the whole character changes with the spacing.","f":"grounds, wrapping, fabric, tiles"},
+"qiulu":{"n":"Ball lattice","t":"The Song brocade 'ball-road weave': circles touching like strung balls, each holding a four-petal flower","d":"A famous Song brocade called 'ball-road weave'. Large circles touch edge to edge like balls on a string, each circle filled with a four-petal flower. Common on the silk mounts and wrappers of Song painting; the craft lies in circles biting cleanly into one another.","f":"painting mounts, brocade boxes, gift wrapping"},
+"badayun":{"n":"Eight-way lattice","t":"The Song 'eight-answer' weave: octagons within octagons, meaning reach in every direction","d":"The Song brocade known as 'eight-answer'. Octagons nest inside octagons and connect in all four directions, from which it takes the sense of reaching everywhere. The cells are usually filled with small auspicious motifs, and it is the most exacting of Song skeleton patterns.","f":"Song-style wrapping, screens, cushions"},
+"xiewen":{"n":"Mat weave","t":"The weave impression left on Neolithic pottery — one of the oldest patterns we have","d":"The mark a woven mat left on wet clay. Neolithic potters pressed mats against the vessel and the weave entered the history of pattern. Warp and weft alternate, one passing over the other, and you can read both directions at a glance.","f":"ceramics, woven-goods labels, coarse cloth"},
+"renzi":{"n":"Herringbone","t":"Han brocade laid the character ren on the diagonal; bricklaying and flooring still do","d":"The character for 'person' set on a slant, two strokes inheriting one another into an endless sawtooth. Brick walls, wood floors and wool cloth still lay herringbone today — a pattern whose structure is the decoration.","f":"wood floors, brickwork, wool, menswear"},
+"binglie":{"n":"Ice-crack","t":"Guan ware crazing of the Song, called 'a hundred shards' by scholars, for ice breaking up","d":"The crazing on Song Guan ware, where the glaze cracks but does not fall apart; scholars called it 'a hundred shards'. It means ice breaking up, and garden paving, window grids and furniture panels all borrow it. The point is cracks that look natural and evenly irregular — which is why this one changes with every new seed.","f":"porcelain, window grids, paving, linen"},
+"panchang":{"n":"Endless knot","t":"One of the eight Buddhist emblems, a line looping without end and the model for the Chinese knot","d":"One of the eight Buddhist emblems: a single line looping back on itself, with no beginning and no end. Folk craft took it as the model for the Chinese knot, and it is often paired with ruyi or lotus.","f":"Chinese knots, hangings, foil stamping"},
+"tuanhua":{"n":"Medallion","t":"The Tang 'round nest': a ring of flowers around a disc of light, the circle as bone","d":"The Tang brocade called 'round nest' — a ring of flowers around a disc of light, built on the circle. Costume in Dunhuang murals, and later rank badges and cushions, all descend from it.","f":"round packaging, cushions, round fans, embroidery"},
+"shidi":{"n":"Persimmon calyx","t":"Seen at the centre of Han mirrors and lacquer boxes: four petals like a persimmon calyx, meaning stability","d":"Four petals shaped like the calyx of a persimmon, set at the centre of Han bronze mirrors and lacquer toiletry boxes. Four petals hold the centre steady, for a firm foundation and a quiet house.","f":"mirror backs, vessel lids, wooden furniture"},
+"baoxiang":{"n":"Baoxiang rosette","t":"The main motif of Tang Dunhuang ceilings: lotus, peony and chrysanthemum fused into one, for solemn splendour","d":"The main motif of Tang Dunhuang ceilings, which kneads lotus, peony and chrysanthemum into one ideal flower, symmetrical on four sides and layered ring on ring. It stands for the majesty of the jewel, and is the most sumptuous flower form of high Tang.","f":"ceilings, carpets, silk, gift boxes"},
+"chanzhi":{"n":"Scroll vine","t":"The Tang 'tang grass': a vine running on without end, for life that keeps going","d":"This is tang grass. One vine runs on without a break, putting out leaves and flowers in turn, round after round, for life that never stops. Commonest on Tang silver and Song-Yuan porcelain, and the easiest of all to rework into something new.","f":"porcelain, silk, wallpaper, book covers"},
+"rendong":{"n":"Honeysuckle scroll","t":"Arrived with Buddhism in the Northern and Southern Dynasties; honeysuckle survives winter, so it means long life","d":"It came east with Buddhism in the Northern and Southern Dynasties. Honeysuckle keeps its leaves through winter, so it was taken as a sign of long life. Cave-temple borders of the Northern Dynasties and Tang brocade both carry it.","f":"cave borders, fabric edging, book edges"},
+"piqiuhua":{"n":"Scattered florets","t":"Small medallions strewn across Qianlong enamelled porcelain, loose and uneven","d":"A scattering of small medallions on Qianlong enamelled porcelain, flowers of unequal size spread loosely over the vessel like the marks of a ball rolled across it — hence the name. Its beauty is in the unevenness; set them in neat rows and the charm is gone.","f":"porcelain, floral print cloth, scattered wrapping"},
+"lianhua":{"n":"Lotus petals","t":"Northern and Southern Dynasties through Tang: as Buddhism spread, petals rose and fell in tiers","d":"From the Northern and Southern Dynasties into the Tang, as Buddhism spread, lotus petals were laid in tiers around a vessel — the commonest decorative band of the age. Upturned petals, downturned petals and jewelled petals each have their own rules.","f":"vessel bands, Buddhist implements, carpet edges"},
+"shuibo":{"n":"Wave lines","t":"Already on Majiayao painted pottery — the oldest continuous pattern there is","d":"Already present on Majiayao painted pottery, where a few rising and falling lines write water. It is the oldest of continuous patterns and also the most easily reinterpreted: change the spacing and it becomes ocean swell or drifting cloud.","f":"ceramics, silk, wrapping grounds"},
+"ruyi":{"n":"Ruyi cloud","t":"The cloud head on Ming and Qing furniture and cloth: three scrolls abreast, for 'as you wish'","d":"Three cloud heads abreast with their tails joined — on Ming and Qing furniture, textiles and architectural painting everywhere. The name is a pun that works: ruyi is both the shape and the wish.","f":"furniture, painted beams, textiles, wrapping"},
+"wowo":{"n":"Whirl","t":"The great spirals of Majiayao pottery, an abstraction of eddying water","d":"The large spirals on Majiayao pottery, drawn by people watching water turn. Two and a half turns inside a circle — simple, but full of motion.","f":"ceramics, carpets, round packaging"},
+"luohua":{"n":"Falling petals","t":"The Song 'falling flowers on flowing water' brocade: petals carried on the wave, for passing time","d":"A famous Song brocade with petals drifting on ripples, after the line 'flowers fall, water flows, spring has gone'. Scholars loved it, and used it for book wraps and fan cases.","f":"book wraps, fan cases, handkerchiefs, silk"},
+"guibei":{"n":"Tortoise shell","t":"A ground of Han and Tang textiles: hexagons joined, for the long life of the tortoise","d":"Hexagons joined like the plates of a tortoise shell, used as a ground on Han and Tang textiles. The tortoise lives long, so the pattern carries luck on its own; small flowers are often dropped into the cells to make a richer brocade.","f":"textile grounds, metal mesh, tiles"},
+"yulin":{"n":"Fish scale","t":"Common in Song carved porcelain, tier over tier, for surplus year after year","d":"Common on Song carved porcelain: one tier laid over the next like the scales of a fish. The pun on 'surplus every year' carried it from vessels into architecture and dress.","f":"porcelain, roof tiles, scale armour, wrapping"},
+"suzi":{"n":"Chainmail","t":"The linked structure of mail armour, already in Tang brocade — for locking in safety","d":"Taken from mail armour, where one ring holds the next and the structure is itself the pattern. It appears in Tang brocade; folk saying has it that it 'locks safety in', and it is used on door fittings and metalwork.","f":"metalwork, door fittings, textiles"},
+"qian":{"n":"Coin","t":"The shape of the Han five-zhu coin: round outside, square inside, for drawing wealth","d":"The shape of the Han five-zhu coin, round without and square within. The ancients cast 'round heaven, square earth' into money; folk craft borrowed it to draw wealth, and also to speak of being round outside and square inside in conduct.","f":"wrapping, window grids, textiles, festive goods"},
+"lianzhu":{"n":"Pearl roundel","t":"Northern Dynasties to Tang: a Sasanian style that came along the Silk Road, pearls ringing a main motif","d":"A Sasanian Persian style that arrived along the Silk Road between the Northern Dynasties and the Tang: a ring of round pearls enclosing a main motif. Many examples survive in brocade excavated at Turpan — evidence of Central Asia and the Central Plains meeting.","f":"silk, brocade, borders"},
+"denglong":{"n":"Lantern","t":"A Lantern Festival subject on Ming and Qing gold brocade: ribbed body, tassel below","d":"A Lantern Festival subject on Ming and Qing gold brocade. The body is ribbed, a tassel hangs below, and lanterns are strung in rows. Strongly seasonal, and much used on festive cloth.","f":"festive wrapping, textiles, lantern paper"},
+"juchu":{"n":"Double vajra","t":"The Buddhist karma-vajra flattened out: four arms, one point each, guarding the four quarters","d":"The Buddhist karma-vajra flattened into a plane: symmetrical on both axes, four arms each ending in a point. It entered textiles and painted beams after Tang tantrism arrived, and its point is four-way balance and protection. All four directions have to be identical — a hair out of place and it stops being solemn.","f":"religious textiles, painted beams, cover stamping"},
+"baina":{"n":"Patchwork","t":"The 'paddy-field robe' of scraps, no two cells filled alike","d":"The baina robe was sewn from scraps of cloth, and in the Ming and Qing this patchwork went onto women's dress as the 'paddy-field jacket'. No two cells are filled the same way, so no second one can ever match — here the pattern rearranges itself with every new seed.","f":"patchwork, fabric craft, notebook covers"},
+"haishui":{"n":"Waves and rock","t":"The hem of Ming and Qing dragon robes: tumbling waves around a standing rock, for a realm that holds","d":"The pattern on the hem of Ming and Qing dragon robes: waves tumbling around a standing rock, for a realm that endures. The curl of each wave follows set rules, tier pressing on tier and narrowing upward, so it looks busy without being chaotic.","f":"ceremonial dress, gift boxes, festive wrapping"},
+"asanoha":{"n":"Hemp leaf","t":"Japanese asanoha: three lines meeting at the centre of a honeycomb cell, like a hemp leaf; sewn for children","d":"In Japan, asanoha. Inside a honeycomb hexagon three lines meet at the centre, the shape of a hemp leaf. By tradition it was sewn for children's clothes, for growth and toughness. Family crests, latticework and washi wrapping carry it everywhere.","f":"washi wrapping, lattice, children's clothes"},
+"seigaiha":{"n":"Seigaiha","t":"Japanese seigaiha: concentric half-circles like roof tiles, for waves rising on the sea","d":"In Japan, seigaiha. Concentric half-circles lie one over the next like roof tiles, the swell of the sea. The name means waves rising on the sea, and stands for peace and long duration. Kabuki costume, porcelain and Japanese-style packaging all use it.","f":"Japanese-style wrapping, porcelain, cloth"},
+"shippo":{"n":"Shippo","t":"Japanese shippo: overlapping circles grow petals where they cross; the seven treasures of Buddhism","d":"In Japan, shippo. Circles overlap and petals grow of themselves where they cross. The seven treasures are the Buddhist seven jewels, so the pattern is itself a blessing. It came from China and became one of the commonest all-over patterns in Japanese dyeing and lacquer.","f":"lacquerware, dyed cloth, wrapping grounds"},
+"ichimatsu":{"n":"Ichimatsu check","t":"The checked costume of Edo kabuki actor Sanogawa Ichimatsu","d":"In Edo-period Japan the kabuki actor Sanogawa Ichimatsu wore this check, and the check took his name. Dark and light alternating — the simplest and most durable of geometries, and never wrong as a ground cloth.","f":"fabric, tiles, wrapping, Japanese-style design"},
+"sayagata":{"n":"Sayagata","t":"Swasitkas joined on the diagonal into lozenges, named for a twill fabric they resemble","d":"Swasitkas joined on the diagonal into a diamond net, named for a twill cloth called saya that it resembles. Common in Japanese dyeing and latticework; look closely and every diamond holds a swastika.","f":"kimono, lattice, wrapping"},
+"uroko":{"n":"Uroko scales","t":"Triangles laid like fish scales, sharper and harder than round scales","d":"Triangles laid one over the next like fish scales, used on armour of the Japanese kofun period and on cloth after it. The acute angle gives a touch of edge, harder than round scales.","f":"textiles, armour patterns, wrapping"},
+"kiku":{"n":"Chrysanthemum","t":"The Japanese imperial crest; the sixteen-petal form is the most formal","d":"The chrysanthemum is the crest of the Japanese imperial house, and the sixteen-petalled form is the most formal. Folk use it to wish long life; vessels, doors and kimono all carry it. Change the petal count and the degree of formality changes with it.","f":"Japanese-style vessels, crests, wrapping"},
+"girih":{"n":"Eight-point star","t":"West Asian girih: two squares overlapped into a star, on mosque brickwork and wooden screens","d":"Girih is the core construction of West Asian geometry: two squares overlapped into an eight-point star, then joined outward in four directions. Mosque brickwork, wooden lattice screens and manuscript borders all work from this set. Its virtue is that it tiles indefinitely, with seams that close exactly.","f":"tiles, wooden screens, book borders"},
+"paisley":{"n":"Paisley","t":"The Persian boteh, a hooked teardrop, carried to Europe by Kashmir shawls","d":"Called boteh in Persian, a hooked teardrop that some read as a cypress and some as a seed of life. It reached Europe on Kashmir shawls and took its English name from the town of Paisley, where they were woven. Neckties and scarves still use it.","f":"scarves, neckties, all-over wrapping"},
+"tulip":{"n":"Tulip","t":"The tulip on Ottoman Iznik ware, three-pointed cup and slender stem — the national flower of Turkey","d":"The tulip of Ottoman Iznik pottery: a three-pointed cup on a long slim stem, the national flower of Turkey. In the Ottoman vocabulary of ornament it stood for perfection and the divine, and the way it was drawn followed strict rules.","f":"porcelain, tiles, Turkish-style wrapping"},
+"xian":{"n":"Bowstring bands","t":"Horizontal bands on Neolithic to Shang-Zhou pottery and bronze — the plainest of ornaments","d":"Line after horizontal line, thick and thin alternating; the name compares them to a bowstring. It is the plainest decoration on pottery and bronze, and Shang and Zhou ding and gui vessels often wear a few bands around the belly. Simple as it looks, change the spacing and the temper changes: close and quiet, wide and wild.","f":"pottery, vessel bands, minimal design"},
+"fangge":{"n":"Dotted grid","t":"Squares with a dot stamped in each on early pottery — order at its most direct","d":"Squares set out with a dot punched in the centre of each, a common impressed pattern on Neolithic pottery. The grid sets the order and the dots give the beat, so nothing is left out — which is why it has survived several thousand years.","f":"ceramics, grid paper, wrapping"},
+"sishu":{"n":"Four-lobed flower","t":"A cross with four petals, the basic flower of Han and Tang cloth and mirrors","d":"A cross with a round petal growing from each arm. Han and Tang textiles and bronze mirrors use it as a main motif because it is symmetrical on four sides and will not go wrong however it is set out — the most forgiving of flowers.","f":"textiles, bronze mirrors, scarves"},
+"liuban":{"n":"Six-petal flower","t":"Six petals around a centre, common in Tang brocade and folk blue-resist cloth","d":"Six round petals around a centre, the commonest flower shape in folk craft. Blue-resist cloth, painted woodwork and papercuts all have it, because six is the easiest to draw — divide a circle into six and you are done.","f":"blue-resist cloth, papercuts, woodwork"},
+"haitang":{"n":"Crabapple","t":"Four long petals overlapped into a crabapple, the darling of Song gardens","d":"Four long petals overlapping with a small centre: the crabapple, one of the most loved flowers of Song gardens, which later entered brocade and porcelain. It resembles the Gothic quatrefoil, but the petals are longer and softer.","f":"brocade, porcelain, invitations"},
+"taohua":{"n":"Peach blossom","t":"Five pointed petals and a ring of stamens, for 'blossom brings prosperity'","d":"Five pointed petals opening outward around a ring of fine stamens: peach blossom. Folk craft takes the pun 'blossom brings prosperity', so New Year couplets, cake moulds and quilt covers all use it.","f":"quilt covers, cake moulds, New Year prints"},
+"putao":{"n":"Grape","t":"A cluster under a vine — the celebrated motif of Tang lion-and-grape mirrors","d":"A cluster of fruit hanging from a vine with a leaf on either side. It is most famous on Tang mirrors with lions and grapes, a subject that came in along the Silk Road and was reworked into something of the Central Plains' own.","f":"bronze mirrors, textiles, wine packaging"},
+"hulu":{"n":"Gourd","t":"Double gourd on a vine, a pun on 'fortune and rank'","d":"Two spheres and a vine — the most economical lucky pattern there is. The name puns on fulu, fortune and official rank, and Daoists kept medicine in it, so it stands at once for blessing, rank and long life.","f":"New Year prints, textiles, liquor packaging"},
+"zhujie":{"n":"Bamboo","t":"Vertical bands with joints, for 'rising joint by joint'","d":"Vertical bands with a horizontal joint drawn every so often: bamboo. Scholars took it for the empty heart and the honest joint, folk craft for 'rising joint by joint', so it runs from brush shafts and chair backs to window lattice.","f":"furniture, brush shafts, window lattice"},
+"linghua":{"n":"Window lattice","t":"A circle inscribed in a square with corner arcs — the frame of Jiangnan wood windows","d":"A circle cut inside a square with an arc in each corner: the commonest frame of Jiangnan wooden windows. It joins square to circle and keeps a share of both hard and soft, so it breathes however it is laid out.","f":"window lattice, partitions, screens"},
+"shizihua":{"n":"Cross rosette","t":"A disc at each arm of a cross, balanced in four directions","d":"A cross with a disc on each arm and another pressed at the centre. Its virtue is complete balance — the same from all four directions — and laid out it becomes a net, good for all-over grounds.","f":"all-over grounds, tiles, wrapping"},
+"yuntou":{"n":"Cloud-head lattice","t":"Three cloud heads hooked into one repeatable unit, on Ming-Qing painted beams and furniture","d":"Three cloud heads hooked together into a unit that repeats. Common on Ming and Qing painted beams and furniture panels; sturdier than the ruyi cloud, it can join into an unbroken net.","f":"painted beams, furniture panels, textiles"},
+"baozhu":{"n":"Flaming pearl","t":"A round pearl with flames above, on Buddhist offerings and folk lucky cloth","d":"A round pearl with two flames above and a line of support below. Before Buddhist altars it is the mani jewel; in folk craft the flaming pearl, for light and completeness.","f":"altar vessels, textiles, wrapping"},
+"yingluo":{"n":"Bead garland","t":"A hanging string of beads, the ornament of bodhisattvas","d":"An arc falls and a string of beads hangs below it, each smaller than the last. It began as the ornament worn by bodhisattvas and became a border for cloth and vessels; the craft is in making it hang properly.","f":"borders, jewellery design, wrapping"},
+"huitao":{"n":"Framed meander","t":"A meander hook folded inside a square frame","d":"A square frame with a meander hook hidden inside. It packs the meander into a cell so it can serve as skeleton or as main motif, and it is commonest on Qing furniture panels and doors and windows.","f":"furniture panels, doors and windows, wrapping"},
+"tatewaku":{"n":"Tatewaku","t":"Japanese tatewaku: vertical wave lines rising like steam","d":"In Japan, tatewaku: two vertical wave lines rising side by side, the look of steam climbing. In the Heian period it was a court pattern worn on robes, and it later became one of the commonest grounds in kimono and wrapping.","f":"kimono, wrapping, screens"},
+"ami":{"n":"Ami net","t":"Japanese ami: a fine diagonal net taken from fishing nets","d":"In Japan, ami: a fine diagonal net borrowed from fishing nets. The mesh is small and the line thin, so from a distance it reads as grey and close up it is all rule. Used on kimono grounds and carved porcelain.","f":"kimono grounds, porcelain, wrapping"},
+"yagasuri":{"n":"Yagasuri","t":"Japanese yagasuri: arrow feathers set on the diagonal, a lucky pattern for brides","d":"In Japan, yagasuri: arrow feathers laid out on the slant. An arrow hits its mark, so in the Edo period a mother would have a yagasuri kimono made for a daughter marrying out — a wish in cloth.","f":"kimono, scarves, wrapping"},
+"kouji":{"n":"Kouji link","t":"Japanese kouji: the character for 'work' joined up and down, for long continuance","d":"The character ko joined above and below into an endless chain. Because the chain never stops, it stands for a family line and health that last, and it is a common lucky pattern on kimono and obi grounds.","f":"kimono, obi, wrapping"},
+"waraku":{"n":"Waraku rings","t":"Japanese waraku: rings interlocking one through the next","d":"Rings that hold one another, over and under like a real chain, for 'unbroken'. It is a cousin of shippo but looser and more chain-like.","f":"kimono, lacquerware, wrapping"},
+"yukiwa":{"n":"Snow ring","t":"Japanese yukiwa: six snowflakes inside a circle","d":"Six snow branches growing out of a circle. The Japanese read snow as a good omen; yukiwa is used alone and often as the frame for compound patterns such as 'flowers in a snow ring'.","f":"kimono, lacquerware, winter wrapping"},
+"sakura":{"n":"Sakura","t":"Japanese sakura: five petals with a notch — the notch is the signature","d":"Five petals, each with a small notch at the tip — the easiest way to recognise cherry. The Japanese watch cherry for the falling, so the blossom carries a touch of impermanence, and it serves as a national flower too.","f":"kimono, wagashi wrapping, spring themes"},
+"fuji":{"n":"Wisteria","t":"Japanese fuji: a hanging spray of blossom, the crest of the Fujiwara","d":"A spray of wisteria hanging down, gathering slightly at the hem. The Fujiwara took it as their crest and it became one of the ten great Japanese crests. The hang has to look soft; draw it stiff and the charm goes.","f":"kimono, crests, wrapping"},
+"kanze":{"n":"Kanze water","t":"Japanese kanze: swirling water, the wave of the Kanze school of Noh","d":"The water pattern of the Kanze school of Noh: whorls strung along horizontal water lines. It began as a stage backdrop, then entered dyed cloth, and is the most animated of Japanese patterns.","f":"kimono, stage, wrapping"},
+"fundo":{"n":"Fundo links","t":"Japanese fundo: scale weights linked up and down, for weight and steadiness","d":"The shape of a balance weight joined above and below. The fundo was the old weight for weighing silver; its shape sits solid, so the pattern means 'full measure, dependable'.","f":"kimono, lacquerware, wrapping"},
+"kanoko":{"n":"Kanoko dots","t":"Japanese kanoko: tie-dyed dots like the spots on a fawn","d":"In Japan, kanoko: the small dots left by tie-dyeing, set close in rows like the white spots on a fawn's back. The smaller and more even the dots, the more skill it shows.","f":"kimono, yukata, fabric craft"},
+"arabesque":{"n":"Arabesque","t":"The basic vocabulary of Islamic scrollwork: tendrils curling in symmetry, never figures or animals","d":"The basic vocabulary of the arabesque: a tendril curling again and again and growing in mirror symmetry, with no figures and no animals. Geometric and vegetal arabesque are usually alternated, one hard and one soft.","f":"mosque ornament, bookbinding, tiles"},
+"cintemani":{"n":"Cintemani","t":"Three discs and a pair of waves on Ottoman Iznik ware, an abstraction of tiger and leopard markings","d":"The classic combination on Ottoman Iznik porcelain: three discs in a triangle with two parallel waves below. It began as tiger stripe and leopard spot, a mark of power, and became the signature of Turkish porcelain.","f":"porcelain, textiles, Turkish-style wrapping"},
+"najm":{"n":"Six-point star","t":"Two triangles overlapped, known in West Asia as the Seal of Solomon","d":"Two equilateral triangles overlapped, called the Seal of Solomon across West and Central Asia. It appears on flags, tiles and wooden screens, and often serves as the node of a larger geometry, tying the scattered figures together.","f":"tiles, wooden screens, covers"},
+"celtic":{"n":"Celtic knot","t":"The Celtic triquetra: one line, no break, for the unending cycle","d":"The Celtic triquetra, drawn in one stroke with no beginning or end, over and under at the crossings like a real knot. It appears on Irish stone crosses, manuscripts and metalwork, standing for the cycle that never stops. Good for badges, book covers and tattoo designs.","f":"badges, book covers, metal fittings"},
+"greek":{"n":"Greek key","t":"The Mediterranean meander, a key-shaped band — the same idea as the Chinese meander, arrived at separately","d":"The meander of the Mediterranean world: a continuous folded band like a key. It is the same idea as the Chinese meander, grown independently on both ends of Eurasia, except the Greek turns are squarer and stress the horizontal. Ancient Greek vases almost always carry it at rim and foot.","f":"vases, architectural bands, frames"},
+"shamsa":{"n":"Shamsa","t":"The Persian shamsa: fine radiating petals, on the opening page of books and lacquer","d":"The Persian shamsa, literally 'sun'. A ring of fine radiating petals around a centre, painted on the first page of a Quran or a book of verse — a beam of light thrown onto the text. The petal count follows rules, sixteen being common.","f":"manuscript binding, lacquerware, covers"},
+"mihrab":{"n":"Mihrab arch","t":"The mihrab niche of a mosque, pointing the way to prayer","d":"The niche in a mosque wall that marks the direction of prayer is the mihrab, and its pointed arch was taken up as a pattern. Arches in rows read as a corridor, or as a line of doors.","f":"architectural ornament, carpets, screens"},
+"kufic":{"n":"Kufic band","t":"Kufic calligraphy turned geometric, its strokes folding into a band","d":"Kufic is the earliest Arabic script, all horizontals and verticals with hard corners, made for geometry. Strip a sentence to its skeleton and it becomes a band that folds and turns without end.","f":"architectural bands, book borders, wrapping"},
+"star10":{"n":"Ten-point star","t":"A ten-point star, the higher-order star of West Asian geometry","d":"A ten-point star is the higher-order star of West Asian geometry and needs a circle divided into ten to draw accurately. It sits at the centre of wooden screens and tiles, four points facing the four quarters while the other six carry the transition.","f":"tiles, wooden screens, covers"},
+"medallion":{"n":"Medallion","t":"The roundel at the centre of a carpet: three rings and a ring of rays","d":"The round motif at the centre of a carpet. Three concentric rings, a circle of dots, twelve rays: it gathers the whole carpet's attention to the middle and gives the surrounding field something to answer to.","f":"carpets, cushions, plates"},
+"mashrabiya":{"n":"Mashrabiya","t":"The mashrabiya screen: an eight-point star net that passes air and light but not people","d":"A mashrabiya is the wooden screen outside the windows of old West Asian houses, eight-point stars joined into a sheet that lets air and light through but not a person. Here geometry is not for beauty but for use.","f":"screens, window grids, partitions"},
+"zellige":{"n":"Zellige","t":"Moroccan zellige tile: eight-point stars and crosses alternating to fill the ground","d":"Moroccan zellige mosaic, eight-point stars and crosses alternating to fill the field, each piece chiselled by hand and set. Star and cross are the most basic pair in West Asian geometry — one points at heaven, the other at the four quarters — and together they extend without limit.","f":"tiles, screens, wrapping"},
+"khatam":{"n":"Khatam","t":"Khatam: an eight-point star enclosing two squares, on Iranian screens and tiles","d":"Called khatam in Iran: two squares offset by forty-five degrees inside an eight-point star. Eight points and eight corners align, the steadiest construction Persian craftsmen knew, common on Iranian wooden screens and bookbindings.","f":"wooden screens, bookbinding, tiles"},
+"gul":{"n":"Turkmen gul","t":"The gul of Central Asian Turkmen carpets: an octagon in a frame, toothed at the edges","d":"The gul of Turkmen carpets: an eight-point star inside a frame, teeth pushing out at the edges. Each tribe has its own gul, so a carpet's gul tells you who wove it — an identity card in wool.","f":"carpets, felts, textiles"},
+"quatrefoil":{"n":"Quatrefoil","t":"The Gothic quatrefoil, read in the Middle Ages as the four evangelists","d":"The Gothic quatrefoil: four round lobes into one flower, opening on window tracery, spandrels and manuscript borders. Medieval readers took it as the four evangelists, which is why it is so common in churches.","f":"window tracery, bookbinding, church ornament"},
+"guilloche":{"n":"Guilloche","t":"Two sine waves interlaced into a braid — Greek and Roman, and still on banknotes","d":"Two sine lines interlaced into one braid. It is on Greek and Roman mosaic floors and column bases, came back in the neoclassical period, and is still printed on banknotes and certificates — security printing wants exactly this look of something a machine can draw perfectly and a hand cannot.","f":"certificate grounds, book covers, metal edging"},
+"pomegranate":{"n":"Pomegranate","t":"The main motif of Renaissance Italian velvet: many seeds, so wedding cloth loved it","d":"The main motif of Renaissance Italian velvet: a segmented pomegranate standing at the centre, scroll leaves around it. Many seeds made it a favourite for wedding cloth, and the symmetry is nearly architectural.","f":"velvet, wedding cloth, wallpaper"},
+"bogolan":{"n":"Bogolan","t":"Mali bogolan mud cloth: zigzags and dots painted by hand in river mud","d":"Malian bogolan, painted by hand on cotton with fermented river mud — zigzags, checks, dots, the color running from iron grey to deep brown. Each cloth records the identity and story of its wearer; it is the most literate of West African cloths.","f":"fabric, pottery, raw-style wrapping"},
+"kente":{"n":"Kente","t":"Ghanaian kente: squares inside crosses, and every color has a name","d":"Ghanaian kente, woven in narrow strips and sewn into a full cloth, squares within crosses within squares. Every color and combination has a name and a meaning, so what kente you wear is a sentence you have spoken.","f":"webbing, wrapping, festive decoration"},
+"fleur":{"n":"Fleur-de-lis","t":"The fleur-de-lis, emblem of the French crown: three lily petals","d":"The fleur-de-lis: three petals, one upright and two curling out, bound at the base by a band. From the emblem of the French crown it went into heraldry, ironwork and wallpaper, and it is the most recognisable sign in Europe.","f":"heraldry, ironwork, wallpaper"},
+"rosette":{"n":"Rose window","t":"The great round window of a Gothic facade, twelve petals radiating","d":"The large round window on a Gothic facade. Twelve petals radiate from the centre until the stone is only a frame, and when light comes through the whole wall glows. Twelve, for the twelve apostles.","f":"window tracery, plates, covers"},
+"chevron":{"n":"Chevron","t":"Chevron: paired V lines, the classic bone pattern of European cloth","d":"Two parallel V lines, one above the other. It has one more line than the Chinese herringbone, so it reads thicker and more like wool. European suitings and military sleeve chevrons both use it.","f":"wool, sleeve insignia, wrapping"},
+"hound":{"n":"Twill","t":"The basic diagonal structure of woollens, with grooves in rows","d":"Warp and weft cross two up and two down, and the surface lifts into diagonal grooves — tweed depends on it for its hand. Reverse the direction and it becomes broken twill; herringbone is its cousin, and houndstooth is the same weave with four black and four white threads.","f":"woollens, web grounds, wrapping, book covers"},
+"eggdart":{"n":"Egg-and-dart","t":"Egg-and-dart, on the mouldings of Greek architecture","d":"An egg, then a dart, alternating. It lives on capitals and cornices, far above the eye, which is why it can be carved broadly without ever seeming noisy.","f":"architectural mouldings, frames, bookbinding"},
+"beadreel":{"n":"Bead-and-reel","t":"Bead-and-reel: a row of beads between pairs of short bars","d":"A string of round beads with a short bar on either side. The finest of the classical mouldings, usually on the edge of picture frames and furniture, where its job is to part two surfaces cleanly.","f":"picture frames, furniture edges, borders"},
+"leaded":{"n":"Leaded quarries","t":"The diamond leadwork of stained-glass windows","d":"Stained glass is cut into diamond quarries by lead cames, with a roundel soldered where they cross. Medieval glassmakers could not cast large panes, so they pieced small ones, and the piecing became a pattern.","f":"stained glass, partitions, wrapping"},
+"key":{"n":"Roman key","t":"The Roman key pattern, a single line folding into a square wave","d":"One line folding up and down into a square wave. It is a cousin of the Greek key but simpler: the key turns back on itself, this one only runs.","f":"mosaics, borders, tiles"},
+"palmette":{"n":"Palmette","t":"The Greek palmette: a fan of seven leaves, ancestor of the acanthus","d":"A palm fan opening from the base, seven leaves spread evenly. It is the ancestor of the acanthus and the arabesque, and Greek vases, capitals and pediments all use it to close an edge.","f":"architectural edging, vases, book covers"},
+"acanthus":{"n":"Acanthus","t":"The acanthus of the Corinthian capital: deep lobes and curling tips","d":"The cluster of curling leaves on a Corinthian capital is acanthus. The lobes are cut deep and the tips curl inward; after the Renaissance it became the most fundamental leaf in Western ornament, unrolling from furniture onto banknotes.","f":"capitals, carved furniture, book covers"},
+"damask":{"n":"Damask","t":"Velvet damask: a symmetrical flowering branch, named for Damascus","d":"European velvet damask: one symmetrical flower standing at the centre, scroll leaves falling to either side and a small diamond set above and below. The name comes from Damascus, where medieval weavers were the best at this two-tone figured satin.","f":"velvet, wallpaper, table linen"},
+"tartan":{"n":"Tartan","t":"Scottish tartan: crossing bands of different widths, one palette per clan","d":"Two sets of crossing bands, thick and thin together, darkest where they overlap. Each clan has its own palette, so reading a tartan identifies a family as surely as reading a flag.","f":"wool, scarves, wrapping"},
+"tracery":{"n":"Tracery","t":"Gothic tracery: trefoils under pointed arches, the bone of a church window","d":"On a Gothic stone window trefoils pile one on another inside pointed arches. The stone is cut back until only the bone is left, and when light comes through the whole wall glows.","f":"window tracery, ironwork, bookbinding"},
+"zulu":{"n":"Zulu basket","t":"Zulu ilala baskets from South Africa: concentric coils and rays","d":"Zulu ilala grass baskets, coiled ring on ring, with concentric circles and rays woven in light and dark straw. The rhythm of each one is set by the weaver's hands, so no two are alike.","f":"basketry, trays, wrapping"},
+"ethcross":{"n":"Ethiopian cross","t":"The cross form of Lalibela's rock churches, arms stepped inward","d":"The cross form of the rock-hewn churches at Lalibela: four arms stepping inward like a building in miniature. Local metal crosses carry the same nested structure, with a dot at the centre that is both an eye and a light.","f":"metalwork, religious objects, covers"},
+"inca":{"n":"Inca step","t":"The stepped diamond of Andean cloth, standing for mountain and terrace","d":"The stepped diamond of Andean textiles, one edge cut into stairs — mountain and terrace at once. The Inca abstracted their landscape into pattern, and the steps are the path they walked every day.","f":"textiles, pottery, souvenirs"},
+"navajo":{"n":"Navajo rug","t":"Navajo weaving: diamonds within diamonds, toothed on all four sides","d":"Navajo rugs: diamonds nested in diamonds with sharp teeth pushing out on four sides, mountain and lightning at once. A rug is a bearer of identity and blessing in Navajo culture, and certain designs belong to particular weavers.","f":"blankets, fabric, jewellery patterns"},
+"adire":{"n":"Adire","t":"Yoruba adire from Nigeria: indigo resist rings","d":"Yoruba adire from Nigeria — tied with thread or resisted with starch, then dipped in the indigo vat. Where it was tied the dye cannot reach, so a ring is left behind; how tight the tie, how large the ring.","f":"fabric, indigo dyeing, wrapping"},
+"maasai":{"n":"Maasai beadwork","t":"Maasai beadwork from Kenya: concentric color rings","d":"The beaded collars of the Maasai, ring on ring of color — red for courage, blue for sky, white for purity. The arrangement of the beads is a sentence, and wearing it is introducing yourself.","f":"jewellery, textiles, wrapping"},
+"berber":{"n":"Berber","t":"North African Berber rugs: diamonds with comb teeth at the sides","d":"Berber wool rugs of North Africa, diamonds one after another with short comb-like strokes at the sides. The weaver works from memory, so every rug differs — a signature.","f":"carpets, cushions, pottery"},
+"nubian":{"n":"Nubian","t":"Nubian pottery and wall painting: alternating triangles","d":"The pottery and house painting of the Nubians on the upper Nile: triangles alternating cell by cell, each with a smaller triangle inside. The colors are ochre, cream and black, the same key as the valley soil.","f":"pottery, walls, wrapping"},
+"ashanti":{"n":"Ashanti","t":"Ashanti cloth from Ghana: a cross in a square with corner squares","d":"Ashanti cloth from Ghana: a cross inside a square with a small square pressed into each corner. The cross is the crossroads, and also 'choose a road' — a proverb they repeat often.","f":"textiles, woodcarving, wrapping"},
+"ndebele":{"n":"Ndebele","t":"Ndebele wall painting from South Africa: geometric color blocks","d":"The house painting of the Ndebele in South Africa: triangles, rectangles and crosses outlined in black and pieced across the wall. Colors and shapes are not free — red is blood and vitality — and the pattern states who lives there.","f":"murals, fabric, wrapping"},
+"kuba":{"n":"Kuba cloth","t":"Kuba raffia cloth from Congo: cut-pile lines and inlaid squares","d":"Raffia cloth of the Kuba in Congo, cut in lines to expose two tones and inlaid with small squares, so from a distance it reads as rolling terrain. The pattern can state a family's age, standing and marriages.","f":"textiles, cushions, wrapping"},
+"adinkra":{"n":"Adinkra","t":"Ghanaian adinkra: Nkyinkyim, the zigzag for going forward by winding","d":"Among the adinkra symbols of Ghana is Nkyinkyim, a zigzag line meaning 'the road is crooked, you must turn with it'. There are several hundred adinkra symbols, each a proverb — printed on cloth, they are maxims worn on the body.","f":"fabric, pottery, wrapping"},
+"greca":{"n":"Maya greca","t":"The stepped fret on Maya facades, an abstraction of hills and stairs","d":"The stepped fret on Maya building facades, folding up and back down like abstracted hills and stairs. It thinks along the same lines as the Greek key but sits squarer and heavier, with hard corners.","f":"pottery, textiles, architectural bands"},
+"chakana":{"n":"Chakana","t":"The Andean three-stepped cross, for the three worlds","d":"The three-stepped Andean cross stands for the world above, this world and the world below, and also points to the Southern Cross. It appears on Inca cloth and stone walls; each step of each arm is a world.","f":"textiles, stonework, souvenirs"},
+"parang":{"n":"Parang","t":"Javanese batik parang: diagonal wave bands, once reserved for royalty","d":"Parang in Javanese batik: diagonal bands of waves like rows of blades. It was once reserved for the court, and a commoner wearing it broke a taboo. At a Javanese wedding today it is still the most formal choice.","f":"batik, scarves, Southeast Asian wrapping"},
+"koru":{"n":"Koru","t":"The Maori koru: an unfurling silver-fern shoot, for new life","d":"The koru of the Maori in New Zealand: the shoot of a silver fern not yet opened, curled inward. It means new life, growth and beginning, the central form of Maori art — and it flies on the tail of Air New Zealand.","f":"woodcarving, tattoo, logo design"},
+"huichol":{"n":"Huichol","t":"Huichol bead art from Mexico: nested diamonds with corner dots","d":"The Huichol of Mexico press tiny glass beads into patterns, nested diamonds drawing inward with a dot at each corner. To them the diamond is maize, and also the four corners of the universe.","f":"bead art, textiles, jewellery"},
+"mola":{"n":"Mola","t":"Kuna reverse appliqué from Panama: sawtooth edges and color blocks","d":"The mola of Kuna women in Panama is made by stacking layers of colored cloth, cutting through and turning the edges back under. The pattern is dug out rather than drawn, and the sawtooth edges are the marks of the scissors.","f":"fabric, appliqué, wrapping"},
+"tiwanaku":{"n":"Tiwanaku","t":"The stepped cross of the Bolivian highlands, with a dot at each corner","d":"On the stonework of Tiwanaku in the Bolivian highlands the stepped cross carries a dot at each corner for the gods of the four directions. It is of the same family as the chakana, but older and harder.","f":"stonework, textiles, pottery"},
+"shipibo":{"n":"Shipibo","t":"Shipibo maze patterns from the Peruvian Amazon: square spirals","d":"The Shipibo of the Peruvian Amazon draw a maze from one unbroken path, winding out and back to the centre. They call it the path of the songs, and in healing one must follow the line.","f":"textiles, pottery, tattoo designs"},
+"aztec":{"n":"Aztec","t":"Aztec stonework from Mexico: stepped diamonds under a ring of feathers","d":"The stepped diamond of Aztec stone and pottery, ringed with short feathers. In their ornament feathers meant preciousness and divinity, so the ring is not decoration but rank.","f":"pottery, stonework, textiles"},
+"pueblo":{"n":"Pueblo","t":"Pueblo pottery from the American Southwest: rain clouds and rain","d":"On Pueblo pots of the American Southwest, half-circles stack into cloud with three short strokes of rain below and dots scattered above. People in a dry land painted rain on the vessel they drank from — the most practical of prayers.","f":"pottery, textiles, wrapping"},
+"marajoara":{"n":"Marajoara","t":"Pottery of Marajó Island at the Amazon mouth: double-line spirals and nets","d":"Ancient pottery from Marajó Island at the mouth of the Amazon, building a whole geometric language from double-line spirals, nets and steps in red, black and white. Among the most precise ceramic ornament of pre-Columbian South America.","f":"ceramics, textiles, modern print"},
+"rangoli":{"n":"Rangoli","t":"The threshold drawing of India: an eight-petal lotus as skeleton, dots between petals","d":"A drawing made with rice flour at the door of an Indian house, redone every morning: an eight-petalled lotus as the skeleton, dots between the petals and a line running outside. It was originally food for the birds — the finer the drawing, the more sincere the household.","f":"floor art, painting, textiles"},
+"kawung":{"n":"Kawung","t":"Classic Javanese batik: four overlapping ovals, once reserved for the court","d":"A classic of Javanese batik: four ovals overlapping into a flower with a dot at the centre. It was one of the patterns reserved for the court, and the length of the petals signalled rank, so old batik is strictest about this one.","f":"batik, Southeast Asian wrapping"},
+"ceplok":{"n":"Ceplok","t":"Javanese ceplok: a whole family of geometric rosettes","d":"Ceplok in Javanese batik is not one pattern but a family — squares, circles, stars and flowers set out on a strict grid. Its first demand is evenness: every rosette the same size, the same distance apart.","f":"batik, scarves, wrapping"},
+"sidomukti":{"n":"Sidomukti","t":"Javanese sidomukti: a symmetrical flower in a frame, worn at weddings","d":"Javanese sidomukti, a name meaning 'to become noble'. A symmetrical flower at the centre inside a square frame, it is the pattern a bride and groom must wear at a Solo wedding.","f":"wedding cloth, gift boxes, invitations"},
+"sekar":{"n":"Sekar jagad","t":"Javanese sekar jagad, 'flowers of the world': different small patterns pieced into one cloth","d":"Sekar jagad means 'flowers of the world': several different small patterns pieced into a single cloth like a map of an archipelago. It speaks of many kinds in harmony, and is therefore worn at celebrations.","f":"patchwork, scarves, wrapping"},
+"jaali":{"n":"Jaali","t":"Indian jaali: stone lattice with hexagonal openings that pass the wind","d":"Indian and Mughal buildings cut lattices from solid stone, called jaali. Hexagonal openings sit one after another so the wind passes and the sun does not — the cleverest window in a desert.","f":"window grids, screens, partitions"},
+"taegeuk":{"n":"Taegeuk","t":"The Korean taegeuk: a circle split by an S, as on the national flag","d":"A circle divided by an S into two halves with a small circle in each: the taegeuk. The Korean form is quieter than the Chinese — turning slower, leaving more white — so it reads as calm.","f":"fan leaves, wrapping, logo design"},
+"megamendung":{"n":"Mega mendung","t":"Cirebon mega mendung from Indonesia: layered cloud heads","d":"Mega mendung from Cirebon in Indonesia means 'gathering cloud'. Cloud heads nest one inside another with rounded edges, strongly influenced by Chinese cloud scrolls. Local reading: cloud blocks the sun, so the pattern is about patience and an even temper.","f":"batik, wrapping, fabric"},
+"truntum":{"n":"Truntum","t":"Javanese truntum: small star-flowers scattered on a dark ground, worn by the parents at a wedding","d":"Javanese batik truntum, small star-flowers scattered on a dark ground; the name carries the sense of blooming again. At a Javanese wedding the parents of the couple wear it — a blessing that is never spoken aloud.","f":"batik, wedding cloth, wrapping"},
+"kolam":{"n":"Kolam","t":"South Indian kolam: a dot grid with arcs looping round the dots, redrawn at dawn","d":"At dawn in South India women set out a grid of dots in rice flour and let arcs loop around them: a kolam. It is not drawn to be looked at but to be eaten by ants and birds, which is why it is made fresh every day.","f":"floor art, print, textiles"},
+"kanok":{"n":"Kanok","t":"Thai kanok: a flame-shaped scroll, on temple and lacquer borders","d":"Thai kanok: a flame tapering upward and curling into a hook at the tip, with smaller flames added to the sides. It grows on temple gables, door frames and lacquerware, and is the most animated form in Thai ornament.","f":"temple ornament, lacquerware, wrapping"},
+"tapa":{"n":"Tapa","t":"Pacific bark cloth: ruled into cells, filled with fine diagonals, squares at the crossings","d":"Pacific bark cloth, ruled into cells and filled with fine diagonal lines, with a small square pressed over each crossing. The cloth is beaten from bark, so the texture and the pattern grow together and keep the roughness of the hand.","f":"fabric, wrapping, hand-made design"},
+"gu":{"n":"Grain pattern","t":"The grain boss on Warring States jade: small whorls for a full harvest","d":"On Warring States and Han jade discs and pendants, small whorls rise from the surface: the grain pattern. Some read them as grain, some as silkworms; either way they mean life continuing. The jade cutter ground each one with a wheel, and only an even set counts as good work.","f":"jade, vessel grounds, invitations"},
+"pu":{"n":"Rush mat","t":"The rush-mat ground of Warring States jade: three sets of lines at sixty degrees","d":"A common ground on Warring States jade: three sets of parallel lines at sixty degrees to one another, crossing into a fine triangular net like a rush mat. It usually lies beneath grain bosses or studs, and the dense against the open gives the depth.","f":"jade grounds, wrapping, tiles"},
+"sheng":{"n":"Cord-marked","t":"Neolithic cord-marking on pottery, two strands twisted","d":"Neolithic potters beat the wet clay with a paddle wrapped in cord, leaving row on row of cord marks. Two strands twisted, one hollow and one raised — the oldest and plainest decoration on pottery.","f":"ceramics, coarse cloth, hand-made wrapping"},
+"ruding":{"n":"Boss pattern","t":"Rows of raised studs on mirrors and jade, commonest in Han and Tang","d":"Small round studs set out across a vessel. Han bronze mirrors and the rims of jade discs often carry them, row on row, for 'fixed and not to be moved', and to give a plain surface a beat.","f":"bronze mirrors, vessels, leather stamping"},
+"quzhe":{"n":"Angular fret","t":"The squared band on early pottery, harder than a sawtooth","d":"Lines folding at right angles across early pottery — a run across, a run down, cut clean. As old as the sawtooth, but with square corners, so it reads harder and more geometric.","f":"ceramics, textile bands, wrapping"},
+"gouyun":{"n":"Hooked cloud","t":"The squared cloud hooks of Spring and Autumn and Warring States jade and bronze","d":"On the jade and bronze of the Spring and Autumn and Warring States periods, cloud heads were pulled into squared hooks, curling at one end and closing at the other. Much harder than the later ruyi cloud, and a taste peculiar to the late Bronze Age.","f":"jade, bronze, book covers"},
+"jiaoye":{"n":"Banana leaf","t":"The triangular leaves around a bronze or porcelain neck, veined inside","d":"A ring of triangular leaves around the neck of a bronze or the rim of a porcelain — the banana leaf. One vein runs the length of each leaf with side veins branching off, the most typical way of using a leaf as a border.","f":"vessel rims, borders, wrapping"},
+"xiujiu":{"n":"Hydrangea","t":"Four petals round a centre, common on Ming and Qing cloth","d":"Four round petals around a heart, like a hydrangea head. Common on Ming and Qing textiles and porcelain, usually with scroll vine, opening one over the next.","f":"textiles, porcelain, all-over wrapping"},
+"hualing":{"n":"Flowered diamond","t":"A small diamond inside a diamond, a petal at each corner","d":"A small diamond nested inside the diamond frame with a petal growing from each corner. Common in both China and Japan, where it is counted among the basic pattern types and used for kimono grounds.","f":"kimono, wrapping, lattice"},
+"meihua":{"n":"Plum blossom","t":"Five petals and stamens — the Song favourite, read as the five blessings","d":"Five round petals and a ring of fine stamens: the flower the Song loved best. Its five petals were read as the five blessings, so it runs from porcelain to window lattice, from embroidery to cake moulds.","f":"porcelain, window lattice, embroidery, cake moulds"},
+"kaiguang":{"n":"Cartouche","t":"A double-line diamond left blank, opening a window in a pattern","d":"A blank left in a fully covered ground, framed by a double-line diamond. The cartouche usually holds the main motif or an inscription — a window cut into the ornament.","f":"porcelain, screens, covers (good for text)"},
+"zhezhi":{"n":"Single spray","t":"One branch laid across, a flower at the tip — the openness of Song painting","d":"Unlike the running scroll vine, the single spray takes just one branch: it reaches across on the slant, opens a flower at the tip and carries two leaves beside it. The composition of Song bird-and-flower painting entered cloth and became a pattern whose whole point is sparseness.","f":"silk, book covers, invitations"},
+"shoudai":{"n":"Ribbon knot","t":"Two ribbons twisted into a knot, a pun on long life","d":"Two ribbons twisted together and tied once. The shoudai was the silk cord that held an official seal, longer with higher rank, so it was ornament and status at once. Folk craft puns shou, the ribbon, on shou, long life, and pairs it with ruyi or peach.","f":"gift boxes, textiles, festive wrapping"},
+"kikko":{"n":"Kikkō","t":"Japanese kikkō: linked hexagons, the long life of the tortoise","d":"In Japan, kikkō: hexagons joined one to the next like a tortoise shell. The tortoise means long life in both China and Japan, so the pattern runs from weddings to everyday use. Small flowers are often dropped into the cells to make the denser kikkō-tsunagi.","f":"kimono, lacquerware, wrapping"},
+"kagome":{"n":"Kagome","t":"Japanese kagome: a hexagonal net of split bamboo, knotted at each crossing","d":"In Japan, kagome: a hexagonal net woven from three directions of split bamboo, knotted where they cross. It began as a real construction and became a pattern, common on shrine fences and washi wrapping.","f":"bamboo work, fences, washi"},
+"ume":{"n":"Plum","t":"Japanese ume: five round petals and stamens, for early spring and good fortune","d":"Five round petals and a ring of fine stamens. Japan reads plum as the first voice of spring and as endurance of cold, so New Year and weddings both use it. Against cherry, plum petals are round and have no notch.","f":"kimono, New Year decoration, wagashi"},
+"hishi":{"n":"Hishi","t":"Japanese hishi: diamonds packed tight, a favourite of warrior crests","d":"In Japan, hishi: diamonds packed one against the next with a smaller diamond pressed into each. One of the commonest shapes in warrior crests — the Takeda 'four-quartered diamond' comes from here.","f":"crests, kimono, wrapping"},
+"karakusa":{"n":"Karakusa","t":"Japanese karakusa: symmetric scrollwork, Chinese in origin, Japanese in temper","d":"In Japan, karakusa — actually the Chinese tang grass, but the Japanese pulled it into tighter symmetry and stricter rule. One main stem with a scroll branching to either side; the number of turns follows a fixed count, and a wandering line stops looking right.","f":"kimono, screens, bookbinding"},
+"shima":{"n":"Shima stripes","t":"Japanese shima: vertical stripes of varying width, a craze in the Edo period","d":"In Japan, shima: vertical stripes of unequal width. Striped cloth came in from the southern islands in the Edo period and everyone wore it at once; width, count and color became a way of stating rank and mood.","f":"kimono, fabric, wrapping"},
+"koushi":{"n":"Kōshi grid","t":"Japanese kōshi: an even grid, the most basic of all Japanese patterns","d":"In Japan, kōshi: a grid of equal horizontals and verticals, the most basic pattern in all textile design. It looks simple, but change the spacing and it holds up from mosquito netting to formal kimono.","f":"kimono, sliding screens, wrapping"},
+"mikuzushi":{"n":"Mikuzushi","t":"Japanese mikuzushi: three lines to a group, set out of step","d":"In Japan, mikuzushi: three lines to a group, laid across and down out of step, like a grid pushed askew. The name means 'broken'; the craft is disorder with order still inside it, not real disorder.","f":"kimono, obi, wrapping"},
+"igeta":{"n":"Igeta well frame","t":"Japanese igeta: the character for 'well', for steadiness","d":"In Japan, igeta: a square frame with one line across and one down, the railing around a well. It takes the character for well, so it means a spring that never runs dry and a household at rest, and it is often paired with swastika or diamond.","f":"kimono, lacquerware, door fittings"},
+"ichinoji":{"n":"Ichinoji link","t":"Japanese ichinoji-tsunagi: the character for 'one' linked into a net","d":"In Japan, ichinoji-tsunagi: the character ichi, a single stroke, linked across and down into a net. It stands for the straight and unchanging, and in the Edo period both samurai and merchants liked it for luck.","f":"kimono, obi, wrapping"},
+"kuginuki":{"n":"Kuginuki link","t":"Japanese kuginuki: an open square link like the jaws of a nail puller","d":"In Japan, kuginuki: a square link with one side open, like the jaws of a nail puller, set in facing pairs. It is the most exacting of the Edo kommon patterns; a single gap is enough to tell front from back.","f":"Edo kommon, kimono, wrapping"},
+"huoyan":{"n":"Flame","t":"The tongues of fire in a Buddha's halo, from Northern Wei to Tang","d":"A ring of flame around the halo of a Buddha figure, beginning in the Northern Wei and growing long and forceful in the Tang. It was later borrowed for the elbow hair of dragons and the feet of clouds, so flames are not only found behind buddhas.","f":"Buddhist figures, thangka borders, covers and posters"},
+"shanzi":{"n":"Mountain character","t":"The main motif of Warring States mirrors: the character for mountain set in a ring","d":"The character shan, mountain, repeated around the back of a mirror — the leading motif of Chu-style Warring States mirrors. The mountain stands for the solid and the high, and every stroke is squared, which makes it a hard counterpart to the cloud-and-thunder of the same period.","f":"mirror rubbings, design goods, vessel ornament"},
+"mudan":{"n":"Peony","t":"Called king of flowers since the Tang; two schools, scroll and spray","d":"Six petals opening ring on ring around a small cluster of stamens. Since the Tang it has stood for wealth and honour: the Song preferred peony on a running vine, the Ming and Qing the openness of a single spray. Brocade, porcelain and woodcarving all carry it.","f":"brocade, porcelain, woodcarving, wedding cards"},
+"xiangyun":{"n":"Auspicious cloud","t":"Ruyi cloud heads joined into a sheet, on official dress and painted beams","d":"Several ruyi cloud heads stacked with a cloud tail trailing below. Official robe hems, painted beams and the skies of New Year prints all use this set; the more heads stacked, the more sumptuous.","f":"painted beams, embroidery, festive goods"},
+"juanhua":{"n":"Curl scroll","t":"A vine curling at will, the tip turning into a spiral","d":"A vine curling as it likes, the end closing into a spiral with two leaves lifted beside it. Freer than the running scroll, common on Song embroidery and silverwork, and often used to fill a large empty ground.","f":"silverwork, embroidery, book covers, wrapping"},
+"genji":{"n":"Genji cart","t":"A court pattern: the wheel of an ox cart, seen face on","d":"The wheel of the Genji cart, the ox carriage of the nobility: eight spokes and a fine rim. A regular in Japanese court patterns, most often paired with moon and cloud, and common on kimono, screens and lacquer.","f":"kimono, screens, lacquerware, wrapping"},
+"arare":{"n":"Arare","t":"Like falling hail, dots of uneven size","d":"Small dots of different sizes scattered across the ground, like hail — arare in Japanese. Often used as a kimono ground to set off the main motif, and also to suggest snow or sand.","f":"kimono grounds, paper goods, backgrounds"},
+"matsukawa":{"n":"Pine-bark diamond","t":"Diamonds offset and overlapping, like plates of pine bark","d":"Diamonds offset by half a cell and pressing over one another's edges, like the plates of pine bark. Used on warrior dress from the Muromachi period; the most durable of the Japanese diamond family.","f":"kimono, screens, wrapping, cloth"},
+"hanabishi":{"n":"Hanabishi diamond","t":"A four-petal flower inside a diamond, for both crests and cloth","d":"A four-petal flower drawn inside a diamond frame, holding the bone of the diamond and the softness of the flower. One branch of Japanese crests is called hanabishi; on cloth it usually runs into a continuous sheet.","f":"crests, kimono, small goods, wrapping"},
+"chidori":{"n":"Chidori","t":"Flocks of birds over water in a V — the Japanese plover","d":"A bird with wings spread reduced to a bent V; in flocks it becomes chidori. Japan uses it for crowds and prosperity, and it is extremely common on Edo yuzen and kommon.","f":"kimono kommon, paper goods, print"},
+"kumogata":{"n":"Cloud form","t":"The cloud of Heian painted scrolls: stacked arcs","d":"Several arcs stacked into a cloud head with a tail dragging behind — the cloud that hides the sky in Heian handscrolls. Japanese lacquer, maki-e and screens still use it.","f":"maki-e, screens, washi"},
+"ishidatami":{"n":"Ishidatami","t":"Fine paving-stone checks, twice as close as ichimatsu","d":"Alternating checks like paving stones laid one by one — ishidatami in Japanese. Twice as fine as ichimatsu, it is a common ground for kommon kimono and furoshiki.","f":"kommon kimono, furoshiki, paper goods"},
+"diaper":{"n":"Diaper","t":"The diagonal ground of medieval manuscripts and tapestries, a dot in each cell","d":"Two sets of diagonals at forty-five degrees crossing into diamonds with a small circle dotted in each. Medieval manuscript borders, tapestries and church walls all use it as a ground; English calls it diaper.","f":"manuscript borders, tapestries, wallpaper"},
+"octofoil":{"n":"Octofoil","t":"The eight-lobed flower of Gothic tracery, the quatrefoil doubled","d":"Eight round lobes in a ring, common on Gothic window tracery, choir screens and stonework — the quatrefoil doubled. Eight stood for rebirth in the Middle Ages, which is why baptisteries use it most.","f":"stonework, window tracery, church furniture"},
+"crosslet":{"n":"Crosslet","t":"A small trefoil on each arm of a cross, for heraldry and ironwork","d":"A cross with a small trefoil lifted from each of its four ends, called a crosslet in medieval heraldry. Iron railings, gravestones and church doors use it to close an edge.","f":"ironwork, heraldry, stonework"},
+"oak":{"n":"Oak leaf","t":"Oak leaves and acorns, a fixture of English country ornament","d":"A single oak leaf with a waving edge and a midrib running through it. The oak stands for strength and crown in Britain, and woodcarving, embroidery and wallpaper have used it ever since.","f":"woodcarving, embroidery, wallpaper"},
+"scallop":{"n":"Scallop shell","t":"A half-round shell with radiating ribs, the pilgrim's badge","d":"A half-round shell opened with radiating ribs. Medieval pilgrims to Santiago wore one, and it later became pure ornament; the rococo shell is its descendant.","f":"borders, tiles, ironwork"},
+"laurel":{"n":"Laurel","t":"Laurel twigs interlaced — the crown of victors and poets","d":"Leaves set opposite one another on a slanting stem; two stems interlaced make the wreath. Rome put it on the victorious, later on poets, and now on graduates.","f":"medals, certificates, wrapping"},
+"vitruvian":{"n":"Vitruvian scroll","t":"The running scroll of ancient Rome","d":"Scroll after scroll joined head to tail — the band beneath a Roman cornice. Vitruvius wrote it into his book in the Renaissance, which is how it took his name.","f":"cornices, mouldings, book covers"},
+"pinwheel":{"n":"Pinwheel","t":"Four bent arms turning about a centre, an old favourite for tiles and floors","d":"Four bent arms turning around a centre like a pinwheel. Common on European wood floors, cement tiles and iron railings, and a turn of the angle makes it another pattern.","f":"encaustic tiles, floors, ironwork"},
+"kilim":{"n":"Kilim","t":"The nested diamonds and hooks of Anatolian flatweave","d":"Diamond nested inside diamond with a small hook added at each corner — the most typical skeleton of Anatolian flatweave. The direction each hook faces carries meaning in a kilim, and is used to ward off harm.","f":"carpets, textiles, wrapping"},
+"muqarnas":{"n":"Muqarnas","t":"Stalactite vaulting, tier stepping down from tier","d":"Arches shrinking tier by tier as they stack, like honeycomb and like stalactites. Under a mosque dome or inside a niche, muqarnas is what carries the square up into the circle.","f":"architectural ornament, paper craft, sets"},
+"egyptlotus":{"n":"Egyptian lotus","t":"The blue lotus of the Nile, recurring on capitals and murals","d":"A pointed bud with a sepal curling on either side and a bar supporting it below. It recurs on Egyptian capitals, murals and jewellery as a sign of the Nile's renewal.","f":"murals, capitals, design goods"},
+"tifinagh":{"n":"Tifinagh","t":"The old Berber script: geometric cuts","d":"Circles, crosses, broken lines and upright strokes taken from the Tifinagh alphabet of the North African Berbers. Cut into silver, pottery and sand drawings, it looks like writing and like pattern at once.","f":"silver jewellery, pottery, sand art"},
+"tuareg":{"n":"Tuareg","t":"Diamonds and crosses on Saharan silver","d":"A small diamond with a cross inside is the basic unit of Tuareg silverwork. Saharan smiths chase them one by one with a punch until they join into something like a star chart.","f":"silver jewellery, leather tooling, textiles"},
+"chimu":{"n":"Chimú step","t":"The stepped fret of the Peruvian north coast","d":"A line walking up three steps and folding back — the mark of Chimú pottery and cloth. It is a near relative of the Inca step, but fonder of right angles.","f":"pottery, textiles, design goods"},
+"mapuche":{"n":"Mapuche","t":"Double-line diamonds and crosses from southern Chile","d":"A diamond drawn in double lines with a cross pressed into the middle and a small circle at the edge. Mapuche belts and silverwork both know this shape, for the four quarters and the centre.","f":"belts, silver jewellery, fabric"},
+"dotpaint":{"n":"Dot painting","t":"Aboriginal dot painting: concentric circles and dotted paths","d":"Rings of concentric circles stand for waterholes or camps, and the dots beyond them join into paths. Aboriginal dot painting is not only ornament — it is a map, and a story, at the same time.","f":"fabric, posters, design goods"},
+"songket":{"n":"Songket","t":"The diamond ground of Malay gold-thread brocade","d":"A diamond skeleton with a gold dot added at each crossing — the method of Malay songket. Red ground with gold thread is the classic pairing.","f":"brocade, ceremonial dress, wrapping"},
+"kowhaiwhai":{"n":"Kōwhaiwhai","t":"The double spiral on Maori meeting-house rafters","d":"A pair of spirals of unequal weight, one turning each way. Painted on the rafters of a Maori meeting house and the prow of a canoe, it stands for growth and for the ancestors.","f":"woodcarving, murals, fabric"},
+"banig":{"n":"Banig","t":"The over-and-under of Philippine woven mats","d":"Horizontal strips and vertical strips alternating cell by cell, imitating a mat woven from palm leaf. Mats, hats and baskets across Southeast Asia share this structure — plain to look at, and it wears well.","f":"weaving, wrapping, backgrounds"},
+"toraja":{"n":"Toraja scroll","t":"Paired spirals from Sulawesi","d":"Two spirals appearing as a pair with a bar running between them. Common in Toraja woodcarving and painted eaves, for the water buffalo horn and the ancestral spirits.","f":"woodcarving, painting, textiles"},
+"koz":{"n":"Kozakura","t":"Small five-petal cherries scattered — the friendliest of the Edo kommon","d":"Cherry blossoms shrunk to the size of a fingernail and scattered loosely: kozakura. Edo kommon printed them over and over with stencils, so from a distance it is a fine dust of flowers and close up every one has five petals. Commonest on kimono, haneri collars and furoshiki.","f":"Japanese-style wrapping, fabric, paper goods"},
+"sakurad":{"n":"Sakura diamond","t":"A five-petal cherry set in each diamond, two kinds of luck stacked","d":"The diamond is the skeleton and a five-petal cherry sits in each cell. Cherry means one meeting, one time only; the diamond means firm and unbreakable. The two meanings stacked together appear mostly on dyed cloth and small-sleeve kimono.","f":"textiles, wrapping, cards"},
+"nadeshiko":{"n":"Nadeshiko","t":"Dianthus, its petal tips finely toothed — the most sung flower of the Manyōshū","d":"Nadeshiko is the dianthus: five petals, each tip finely toothed. It is among the most celebrated flowers of the Manyōshū, and the Japanese use its name for someone dear and gentle. The pattern is usually scattered, with small stems and leaves.","f":"Japanese-style fabric, greeting cards, tableware"},
+"kikyo":{"n":"Kikyō","t":"Five pointed petals, one of the seven autumn grasses, taken straight as a crest","d":"Kikyō, the bellflower, opens five petals, each tip drawn to a point — crisp enough to be used directly as a family crest. One of the seven autumn grasses; screens of autumn grass with dew are common in Rinpa painting.","f":"crest-style patterns, autumn wrapping"},
+"hagi":{"n":"Hagi","t":"Three leaflets and small pea flowers, first of the seven autumn grasses","d":"Hagi is bush clover: three leaflets in a whorl and small butterfly-shaped flowers. It comes first among the seven autumn grasses, and a chapter of The Tale of Genji is named for it. The pattern is fine stems and scattered bloom, and its whole point is sparseness.","f":"autumn themes, washi, fabric"},
+"kiri":{"n":"Kiri","t":"Three-lobed leaves shared by the Japanese government and many crests","d":"Kiri leaves are three-lobed on a long stalk, with purple trumpet flowers. Japan treats the paulownia as an auspicious tree; the imperial crest and government coins both use it. The leaf shape is thoroughly geometric, so it also strips down well into a skeleton pattern.","f":"emblem-style patterns, wrapping, woodwork"},
+"sasa":{"n":"Sasa","t":"Narrow bamboo leaves, needed for Tanabata and midwinter","d":"Sasa is the narrow-leafed bamboo: long slim blades with parallel veins. Tanabata wishes hang from it and midwinter baths float it, because bamboo stays green and grows fast — the sense of thriving.","f":"washi, wrapping, summer themes"},
+"tachibana":{"n":"Tachibana","t":"The evergreen mandarin, one of Japan's oldest patterns, the 'right-hand tachibana'","d":"Tachibana is the mandarin native to Japan. In the Heian court a cherry stood to the left of the Shishinden hall and a tachibana to the right; it flowers and fruits at once, for generations succeeding one another, and it is among the oldest of Japanese crests.","f":"crest-style, shrine paper goods"},
+"kourai":{"n":"Kōrai border","t":"Kōrai edging: diamonds and pearls, the binding of tatami and screens","d":"Kōrai edging was the binding cloth on tatami, screens and blinds, patterned with diamonds joined by strings of pearls, usually on purple or blue. The name 'Kōrai' — Korea — records that it came from the peninsula in the Kamakura period.","f":"borders, mounting, Japanese room furnishings"},
+"manji":{"n":"Manji link","t":"Swastikas joined at all four ends, without a break","d":"Swastikas joined arm to arm with no beginning or end, called manji-tsunagi in Japan and of the same origin as the Chinese 'wan without end'. Commonest on temples, Buddhist implements and temple bells, for the fullness of virtue and a line that never stops.","f":"Buddhist implements, temple ornament, wrapping"},
+"mie":{"n":"Triple tasuki","t":"Three diagonal cords braided, on warrior formal dress","d":"A tasuki is the cord that ties back a sleeve; the triple form braids three diagonals together. Common on samurai formal dress and hakama, because tying the sleeve is tying the mind — a little of the discipline of the warrior house.","f":"kimono, hakama, ceremonial goods"},
+"noshi":{"n":"Noshi","t":"Noshi: the long folded strip attached to a gift","d":"Noshi was originally a strip of dried abalone sent with a gift, long and narrow like a band and standing for long duration. It was later reduced to a folded strip of paper, still found on wedding and seasonal gift envelopes.","f":"gift envelopes, ceremonial wrapping, washi"},
+"umebachi":{"n":"Umebachi","t":"Five plum petals inside a ring, the crest of Sugawara no Michizane","d":"Five plum petals at the centre inside a circle, shaped like a bowl — hence umebachi. Sugawara no Michizane loved plum, and the Tenmangū shrines and the god of learning have used it since; students buying charms meet it often.","f":"crest-style, study-related paper goods, shrines"},
+"suimon":{"n":"Water lines","t":"Parallel wave bands with a small ring on each crest for spray","d":"Several parallel wave lines set one above another, with a small circle on each crest for spray. Called suimon in Japanese dyeing, of the same origin as the Chinese wave lines, and mostly used as a background.","f":"backgrounds, yukata, summer themes"},
+"wachigai":{"n":"Wachigai rings","t":"Wachigai: two rings overlapping, for a bond that does not break","d":"Two rings crossing, with a small circle drawn at the overlap — wachigai in Japan. Unlike shippo it joins only in pairs and never becomes a net, so it stays open, and it stands for a bond that holds.","f":"crest-style, fabric, wedding paper goods"},
+"zeni":{"n":"Zen coin","t":"Coin pattern: round without, square within","d":"Round outside and square inside is the shape of a coin — zeni in Japan, 'coin charm' in China. Scattered, it means wealth arriving from every direction, and it is a common ground for furoshiki.","f":"wrapping, red envelopes, fabric"},
+"ajiso":{"n":"Ajiso","t":"Ajiso: thin split bamboo woven on the slant into diamonds","d":"Ajiso is the blind or ceiling woven from split bamboo or thin wood laid on the slant, and the pattern is simply two crossing sets of fine diagonals. Tea-room ceilings and the shades of paper lanterns are woven this way.","f":"tea-room backgrounds, blinds, wrapping"},
+"inazuma":{"n":"Inazuma","t":"Inazuma: a zigzag of lightning, for rice setting seed","d":"A zigzag joined into a bolt — inazuma. The old Japanese held that lightning makes rice set seed, so it is a lucky pattern. Noh costume and firefighting insignia both use it.","f":"theatre-style patterns, fabric, wrapping"},
+"dentil":{"n":"Dentil","t":"The tooth-like moulding under a classical cornice, a row of small blocks","d":"A row of small blocks under a Greek temple cornice, shaped like teeth. It parts the cornice from the architrave and breaks up the shadow, so at a distance it reads as a narrow band of light and dark alternating. Neoclassical building still uses it.","f":"architectural wrapping, book covers, borders"},
+"volute":{"n":"Volute","t":"The spirals at either side of an Ionic capital","d":"A spiral at each side of an Ionic capital, the most famous curve in classical architecture. It later became a pattern of its own — furniture legs, silver handles and iron railings all carry one.","f":"furniture, ironwork, binding"},
+"imbric":{"n":"Imbrication","t":"Overlapping scales shared by Roman roof tiles and medieval armour","d":"Half-rounds laid one over the next like fish scales. Roman roof tiles were laid this way, and so were medieval scale armour, Renaissance shields and Victorian weatherboarding.","f":"roofing backgrounds, armour-style patterns, wrapping"},
+"ashlar":{"n":"Ashlar","t":"Squared stone laid in broken courses","d":"Blocks of stone cut flat and laid one course offset against the next: ashlar. Renaissance town houses and castle walls both use it, and the pattern comes from the depth of the joints rather than from any drawn line.","f":"architectural grounds, stone-textured wrapping"},
+"plait":{"n":"Plait","t":"Four-strand braid, the oldest of border ornaments","d":"Four strands crossing into a rope, called plait or braid in classical borders. It has more relief than a single strand and is much used on column bases, door frames and picture frames.","f":"picture frames, door ornament, wrapping edges"},
+"ivy":{"n":"Ivy","t":"The plant of Dionysus, a regular in church carving","d":"Ivy grows entwined with the vine, and the Greeks gave it to the god of wine. Its leaf is common on church capitals and baptistery lintels, for a clinging that does not let go.","f":"church-style patterns, paper goods, fabric"},
+"vine":{"n":"Grapevine","t":"The main motif of Roman sarcophagi and church arches","d":"Vines are near-obligatory on Roman sarcophagi: curling stem, leaves, clusters between. With Christianity it became a sign of the blood of Christ, and church arches and font carvings carried it into the late Gothic.","f":"classical wrapping, wine labels, carved patterns"},
+"coronet":{"n":"Coronet","t":"A row of triangular points, the outline of a crown","d":"A row of upward triangles is the outline of a crown, used on European town arms, regimental colours and hotel signs. It is pared down to a skeleton, which is exactly why it works as a border.","f":"emblem-style, borders, labels"},
+"lace":{"n":"Lace mesh","t":"The hexagonal ground of needle lace","d":"Handmade lace begins with a hexagonal mesh and works the flowers over it. The mesh itself became a pattern, and the lace towns of Belgium and France each had their own density of net.","f":"lace-style grounds, wedding paper goods"},
+"trefoil":{"n":"Trefoil","t":"The three-lobed arch of Gothic building","d":"Three round lobes into one flower, called a trefoil in Gothic tracery and arches. It is older than the quatrefoil; Romanesque churches already used it in rows along the arch moulding.","f":"church-style patterns, bookbinding"},
+"pointed":{"n":"Pointed arch","t":"The skeleton grid of the Gothic pointed arch","d":"The pointed arch is the mark of the Gothic: two arcs meeting at a point on top. Take half the arch as a skeleton and repeat it, and you have a pointed-arch grid, used on church tracery and timber ceilings.","f":"Gothic wrapping, window tracery, covers"},
+"crosswin":{"n":"Cross window","t":"A cross set in a round window, the medieval division","d":"A cross inside a round window with a lobe opening in each quarter — the commonest division of a medieval church roundel. Strip it to its skeleton and tile it, and you have a cross window.","f":"church-style, stained-glass patterns, book covers"},
+"serp":{"n":"Serpentine","t":"Two waves in opposite phase braided together","d":"Two wave lines in opposite phase crossing, knotting where they meet. Extremely common in Renaissance inlay and painted borders, and the discipline is that the two lines stay equidistant throughout.","f":"borders, painted-style, wrapping"},
+"ribbon":{"n":"Ribbon","t":"A folded band looping into a diamond, the bow of a border","d":"A band folded into a diamond with both ends falling — the abstraction of a ribbon and a bow. Medals, invitations and wax-seal borders all use it.","f":"invitations, seals, gift boxes"},
+"selbu":{"n":"Selbu snowflake","t":"The eight-point snowflake of Norwegian Selbu mittens","d":"Mittens from Selbu in Norway have been knitted with this eight-point snowflake since the nineteenth century, in two colors and very fine stitches. It is really an eight-point star set about with small crosses.","f":"sweater-style, winter paper goods, wrapping"},
+"rushnyk":{"n":"Rushnyk","t":"The geometric bands of Eastern European cross-stitch","d":"On the ritual towel of Eastern Europe, rushnyk, cross-stitch in red and black runs in geometric bands: diamonds, stars and zigzags in turn. It is a set of signs with rules, and the diamond stands for the field and for fertility.","f":"folk fabric, wrapping, greeting cards"},
+"kalocsa":{"n":"Kalocsa","t":"The round flowers of Kalocsa embroidery","d":"The colored embroidery of Kalocsa in Hungary is built on round flowers with petals nested ring on ring and bright color. The pattern later went onto pottery and wall surfaces and became the town's signature.","f":"folk wrapping, ceramics, fabric"},
+"wycin":{"n":"Wycinanki","t":"Symmetric flowers cut from Polish paper","d":"Polish wycinanki cut symmetric flowers and birds from sheepskin, folded first and then cut, so that it opens identical left and right. That mirror symmetry is exactly the natural structure of a repeating pattern.","f":"papercut style, greeting cards, window flowers"},
+"majolica":{"n":"Majolica","t":"The roundel of Italian tin-glazed ware","d":"Majolica is Italian tin-glazed earthenware, its plate centres usually painted with a roundel holding radiating petals or a coat of arms. It came in from Majorca in the sixteenth century, which is where the name comes from.","f":"ceramic-style patterns, plate wrapping"},
+"moorish":{"n":"Moorish lattice","t":"The double-outline diamond net of Moorish Spain","d":"Seven centuries of Moorish rule in Spain left this skeleton of diamonds threaded with rings. The stucco walls of the Alhambra are covered with its variants, and the rule is that no line may ever cross another.","f":"Moorish wrapping, tiles, fabric"},
+"hextile":{"n":"Hex tile","t":"The hexagonal paving of Victorian floors","d":"Hexagons tile a plane without gaps, and Victorian halls and bathrooms used them freely — one color per tile, the joints doing the drawing.","f":"tile grounds, wrapping, retro style"},
+"herring":{"n":"Fishbone","t":"Brick and wood laid herringbone","d":"Rectangular bricks or boards laid on the slant in offset pairs, the joints forming one herringbone after another. It wastes more material than laying straight, but the joints give a strong direction, and old European floors and brick walls use it.","f":"wood-floor grounds, wrapping, book covers"},
+"dovetail":{"n":"Dovetail","t":"The wedge teeth of a dovetail joint","d":"The dovetail is the strongest joint in woodwork, its teeth wide on one side and narrow on the other so they cannot pull apart. Abstract the teeth into triangles and notches and you have a dovetail pattern, much used in Art Deco.","f":"woodwork style, wrapping, borders"},
+"rauten":{"n":"Rauten","t":"German diamonds with a smaller diamond in each cell","d":"Rautenmuster in German: diamonds with a small diamond nested in each. Found on medieval heraldry, the Bavarian flag and Austrian painted furniture.","f":"heraldic style, folk painting, wrapping"},
+"rosette12":{"n":"Rosette","t":"A twelve-petal rosette, the centre of a ceiling","d":"A rosette at the centre of a ceiling, twelve petals opening outward — the classical way to finish a ceiling. Baroque and rococo carved it in plaster as a solid; tiled flat, it becomes a radiating net.","f":"ceiling style, gift boxes, covers"},
+"gingham":{"n":"Gingham","t":"Vichy gingham: one light check, one dark","d":"Cotton woven at Vichy in France, warp and weft each dyed one color, darkest where they cross — so the check reads in three tones. Picnic cloth, shirts and table linen all use it.","f":"fabric, picnic-style wrapping, backgrounds"},
+"selcuktri":{"n":"Seljuk triangle","t":"Seljuk tile triangles biting one up, one down","d":"Two triangles, one upright and one inverted, biting together, used in rows on Seljuk glazed brick. The joints run on the diagonal, so the wall shifts as the light moves; the plainest ground on an Anatolian mosque wall.","f":"tile style, wrapping, walls"},
+"selcukchain":{"n":"Seljuk chain","t":"Diamond links joined into a chain","d":"Diamonds hooked one into the next with two parallel lines above and below, extremely common on Seljuk carved door frames and niche edges. In Turkish it is zincir — a chain.","f":"borders, carved-stone style, wrapping"},
+"karanfil":{"n":"Carnation","t":"The carnation of Ottoman court ornament, petals finely toothed","d":"The carnation is one of the four great flowers of Ottoman court ornament, alongside tulip, hyacinth and rose. Its petal edges are finely toothed, and each one has to be drawn out separately rather than outlined.","f":"ceramic style, textiles, greeting cards"},
+"sumbul":{"n":"Hyacinth","t":"Hyacinth: a spike of small flowers up the stem","d":"Hyacinth, sümbül, in Ottoman ornament is a spike of small flowers up a slim curving stem. Here the flower spike becomes a field of dots with an outer ring standing for the petals.","f":"ceramic style, textiles, paper goods"},
+"gulrose":{"n":"Rose","t":"The Ottoman rose: layered petals, a dot at the centre","d":"The rose, gül, in Ottoman ornament is not naturalistic: petals layered in rings with a dot at the centre, and the point is the layering rather than the outline. On Iznik tiles it appears in pairs with the tulip.","f":"ceramic style, textiles, gift boxes"},
+"mihrabarch":{"n":"Mihrab arch","t":"The prayer-niche arch of a mosque, pointed and recessed","d":"The mihrab is the niche in a mosque that marks the direction of Mecca, its arch tall and pointed. The arch later became a pattern on its own, used in the central field of carpets, on lintels and on gravestones.","f":"carpet style, door ornament, wrapping"},
+"chahartagh":{"n":"Chahar-tagh","t":"Four arches back to back — Persian for 'four arches'","d":"Four pointed arches standing back to back, chahar-tagh in Persian, originally the four-way open fire temple. Turned into a pattern, it is a set of arches opening in four directions.","f":"architectural style, carpet edges, wrapping"},
+"beadring":{"n":"Beaded roundel","t":"A roundel inside a ring, with one fine line outside","d":"A roundel set inside a ring with a fine line beyond it, like a clasped button. The shamsa of Islamic ornament often frames scripture or a coat of arms, and its whole discipline is concentricity.","f":"book covers, emblems, gift boxes"},
+"hazarbaf":{"n":"Hazarbaf","t":"Hazarbaf, Persian for 'a thousand weaves': diamonds built in brick","d":"Hazarbaf means a thousand weaves, and refers to diamonds built by projecting some bricks and recessing others. Iranian mosque and tomb facades use it at length: diamonds from afar, and every brick standing proud up close.","f":"brickwork style, wrapping, building grounds"},
+"bannai":{"n":"Banna'i","t":"Banna'i: plain brick and glazed brick alternating into a grid","d":"Banna'i is the Persian brick technique that alternates plain brick with glazed, a cross or swastika usually sitting in each cell. It saves material against full glazed tile and wears better.","f":"tile style, wrapping, walls"},
+"selcuknet":{"n":"Seljuk net","t":"A fine diagonal net behind Seljuk carving","d":"Seljuk stone carving usually lays a fine diagonal net behind the main motif to lift it forward. The net never draws attention, but without it the motif looks thin.","f":"grounds, carved-stone style, wrapping"},
+"suzani":{"n":"Suzani","t":"The great round flower of Uzbek suzani, a bridal dowry","d":"Suzani is the large-scale embroidery of Uzbekistan and Tajikistan, worked by the whole family before a bride marries. Its main motif is a huge round flower, a gul, that can be half a metre across.","f":"embroidery style, fabric, gift boxes"},
+"badem":{"n":"Badem","t":"The almond: round at one end, pointed at the other, one ancestor of paisley","d":"Badem is the shape of an apricot kernel, round at one end and pointed at the other. It is one of the ancestors of paisley, and Turkish and Persian carpet borders use it in rows.","f":"carpet style, borders, fabric"},
+"kum":{"n":"Dune arcs","t":"Stacked arcs tracing the contours of a dune","d":"Half-circles laid one over the next like the ripples wind draws on a dune. Much used on Central Asian felts and Turkmen tents, for 'running on'.","f":"felt style, backgrounds, wrapping"},
+"kocboynuz":{"n":"Ram's horn","t":"Koçboynuzu, the ram's horn, a main motif of Turkic felts","d":"Koçboynuzu is Turkish for ram's horn. The horn curls with force, and it is the commonest lucky motif on Turkic felts, standing for strength and increase.","f":"felt style, fabric, wrapping"},
+"tarak":{"n":"Tarak","t":"Tarak, the comb: an Anatolian kilim border","d":"A row of upright strokes of uneven length like the teeth of a comb — tarak in Turkish. It usually sits on the narrow border of a carpet, for 'combed through, going smoothly'.","f":"carpet borders, textiles, paper goods"},
+"elibelinde":{"n":"Elibelinde","t":"The hooked form of Anatolian kilim, from 'hands on hips'","d":"The hooked shape called elibelinde, literally 'hands on hips', is the mother goddess, and one of the oldest motifs in Anatolian kilim — a hook hanging inside a diamond.","f":"kilim style, fabric, wrapping"},
+"atlas":{"n":"Atlas stripe","t":"The fine stripe of Central Asian atlas silk","d":"Atlas is the warp-ikat silk of Central Asia, its stripe edges carrying a natural sawtooth from the dyeing. Here the stripe is kept regular, with a second thread running beside it.","f":"silk style, fabric, wrapping"},
+"kuficgrid":{"n":"Square kufic","t":"The square skeleton of kufic, one diagonal in each cell","d":"Kufic writes letters in straight strokes with hard corners; square kufic goes further and sets a whole passage of scripture into a grid. Iranian brick walls use it across an entire facade.","f":"brickwork style, book covers, wrapping"},
+"abbasid":{"n":"Abbasid lattice","t":"The lobed lattice of the Abbasid period, ancestral to Samarra stucco","d":"At Samarra, capital of the Abbasids, wall stucco was carved all over with a lattice of joined lobes. That lattice later grew into the most widespread geometric ground in the Islamic world.","f":"stucco style, building grounds, wrapping"},
+"selcukstar":{"n":"Seljuk star","t":"A ten-point star, star of Seljuk wood and stone carving","d":"The ten-point star recurs on Seljuk carved niches and stone lintels, its strokes thick and its white space even. It is built from two interlaced pentagons.","f":"woodcarving style, stone-carving style, wrapping"},
+"sufi":{"n":"Sufi spiral","t":"A single spiral, after the turning of the Sufi dance","d":"A spiral drawing inward, after the sema, the turning meditation of the Sufi orders. Common in Persian bookbinding and iron window grilles.","f":"bookbinding, ironwork, covers"},
+"turktri":{"n":"Turkish triangle band","t":"A row of upward triangles, the basic Turkish border","d":"A row of triangles pointing up — üçgen in Turkish, the most basic border there is, usually alternated with straight lines or dots.","f":"borders, textiles, wrapping"},
+"persia":{"n":"Persian border","t":"The narrow border of a Persian carpet, a running fret","d":"The narrow border of a Persian carpet is usually one unbroken fret line, built like the Greek key but denser and finer. It frames the main field and gathers it in.","f":"carpet borders, book covers, wrapping"},
+"achaemenid":{"n":"Achaemenid lotus","t":"The lotus of Persepolis, opening on capitals and cornices","d":"On the capitals and cornices of Persepolis, lotus petals open ring on ring. It is the standard flower ornament of the Achaemenid court, its petals sharper and longer than the Egyptian lotus.","f":"architectural style, stone-carving style, wrapping"},
+"parthia":{"n":"Parthian pearl band","t":"The pearl roundel shared by Sasanian Persia and Tang China","d":"A ring of small dots enclosing a beast or a flower — the most typical Sasanian frame, which came down the Silk Road to Tang China and became the pearl roundel there.","f":"frames, textiles, wrapping"},
+"sasanian":{"n":"Sasanian ring","t":"Double-line rings touching, the border of Sasanian silver","d":"The outer ring on Sasanian silver plates and silk is often a double line with a finer line inside it. It carries more weight than a single line and can hold down a full field of ornament.","f":"silverwork style, borders, wrapping"},
+"timur":{"n":"Timurid lattice","t":"The diamond lattice of Timurid building, a cross in each cell","d":"In Timurid Samarkand and Bukhara, facades are built of diamond lattices with a cross in each cell, blue glaze against plain brick. The lattice later reached India and became a foundation of Mughal building.","f":"architectural style, tiles, wrapping"},
+"isfahan":{"n":"Isfahan roundel","t":"The dome roundel of the Isfahan mosques","d":"At the centre of the Shah Mosque dome in Isfahan sits a great roundel with twelve petals radiating inside it — the high point of the Persian roundel, and absolute in its symmetry.","f":"dome style, gift boxes, covers"},
+"bukhara":{"n":"Bukhara diamond","t":"The diamonds of Bukhara carpets, an eight-point star in each","d":"Bukhara carpets are the most famous of Central Asia: diamonds over the whole field, an eight-point star in each, red ground and blue figure. They are called the carpet of carpets.","f":"carpet style, fabric, wrapping"},
+"dotbrick":{"n":"Dotted brick","t":"A dot at the centre of each brick, the cheapest brick ornament","d":"A round dot at the centre of every square — the least labour of any brick ornament, needing only one drop of glaze per brick. Common on small mosques in Iran and Central Asia.","f":"tile style, grounds, wrapping"},
+"starfield":{"n":"Star field","t":"Six-point stars packed tight, the gaps left as triangles","d":"When six-point stars are packed tight the gaps between them fall into triangles of themselves, so no part of the surface is left idle. Islamic geometry loves this way of accounting for every inch.","f":"geometric style, wrapping, tiles"},
+"persiaflower":{"n":"Persian flower diamond","t":"A four-petal flower in each diamond, the ground of Persian brocade","d":"A small four-petal flower in each diamond is the commonest ground in Persian brocade and bookbinding. Small flowers and a close grid make the main motif stand out.","f":"brocade style, book covers, wrapping"},
+"scatterflower":{"n":"Scattered florets","t":"Small five-petal flowers, one every other cell","d":"Small five-petal flowers set one every other cell and spread loosely across the field. Lighter than a full flower array, it suits book endpapers and box linings.","f":"endpapers, linings, wrapping"},
+"hexnet":{"n":"Hex net","t":"A fine hexagonal net, the ground of screens and metalwork","d":"The fine hexagonal net of the Islamic world serves as the ground for mashrabiya screens and for brasswork. It passes air and light and still blocks the view.","f":"screen style, grounds, wrapping"},
+"adinkrahene":{"n":"Adinkrahene","t":"Adinkrahene, 'great crown': three concentric rings","d":"The highest-ranking of the adinkra symbols: three concentric circles standing for the chief and for cohesion. The Akan print it on mourning cloth and cut it into gold ornaments.","f":"fabric, seals, wrapping"},
+"nkyinkyim":{"n":"Nkyinkyim","t":"A zigzag line, for going forward by winding","d":"The adinkra zigzag, whose name means 'to walk in zigzags' — life has to go round its obstacles. It is also the commonest border on Akan cloth.","f":"fabric, borders, wrapping"},
+"dwennimmen":{"n":"Dwennimmen","t":"Ram's horns: strength set beside humility","d":"A ram's horns curling out to both sides. In adinkra it means that strength should also know humility. It resembles the Turkish koçboynuzu and means something close, but the two grew up in separate systems.","f":"fabric, seals, wrapping"},
+"duafe":{"n":"Duafe","t":"The Akan wooden comb, a sign for women","d":"Duafe is the wooden comb of Akan women, and in adinkra it stands for care and beauty. The teeth set out in a row are the pattern — simple, and instantly recognisable.","f":"fabric, wrapping, cards"},
+"nsaa":{"n":"Nsaa","t":"Nsaa, 'hand-woven cloth', a square in each cell","d":"Nsaa is the cloth the Akan weave by hand, and the pattern takes its grid with a small square set in each cell. It stands for quality and honest material.","f":"fabric, wrapping, grounds"},
+"nkonsonkonson":{"n":"Nkonsonkonson","t":"Linked rings, for hearts joined","d":"Two rings hooked through one another. The adinkra name means a chain; it goes on wedding and society cloth for hearts joined and not to be parted.","f":"fabric, wedding paper goods, wrapping"},
+"fihankra":{"n":"Fihankra","t":"A square within a square, the Akan compound","d":"The traditional Akan house is a ring of rooms around a square courtyard. A square within a square is that plan, and in adinkra it stands for a household at rest.","f":"fabric, home wrapping, cards"},
+"osram":{"n":"Osram","t":"A crescent moon with a star, for faithfulness","d":"Moon and star are a pair in adinkra, standing for faithfulness and harmony. The star is usually drawn with eight points and the moon closes with an arc.","f":"fabric, wedding paper goods, wrapping"},
+"eban":{"n":"Eban","t":"The fence around a compound, for protection","d":"Eban, the fence that encloses a homestead, stands in adinkra for safety and protection. The pattern is a row of standing posts, often used to close the edge of a cloth.","f":"fabric, borders, wrapping"},
+"hwehwemudua":{"n":"Hwehwemudua","t":"A measuring rod, for examining and improving","d":"Hwehwemudua means a rod for measuring, and the adinkra teaching is to keep examining oneself. The pattern is a grid with diagonal graduation marks.","f":"fabric, stationery, wrapping"},
+"ananse":{"n":"Ananse net","t":"A spider's web, for wisdom and cunning","d":"Ananse is the spider of Akan myth, who wins by wit. The web is his mark, and in adinkra it means wisdom and resourcefulness.","f":"fabric, seals, wrapping"},
+"tabono":{"n":"Tabono","t":"A paddle, for pulling together","d":"The paddle tabono stands for being in the same boat; four paddles crossed make the pattern. An outer frame says the paddles are in one canoe.","f":"fabric, team gifts, wrapping"},
+"pempamsie":{"n":"Pempamsie","t":"An iron nail, for being fixed and unmoved","d":"Pempamsie means 'to nail fast', and in adinkra it stands for firmness and readiness. A four-point star is exactly the shape of a nail head.","f":"fabric, seals, wrapping"},
+"wawaaba":{"n":"Wawaaba","t":"The hard seed of the wawa tree, for endurance","d":"The seed case of the wawa tree is extremely hard, and adinkra uses it for toughness and patience. A scattering of leaf shapes is what it looks like.","f":"fabric, wrapping, paper goods"},
+"nsoromma":{"n":"Nsoromma","t":"A star, 'child of the sky'","d":"Nsoromma means 'child of the sky', and in adinkra it stands for reliance and protection. The eight-point drawing is the commonest and the most durable.","f":"fabric, wrapping, cards"},
+"aban":{"n":"Aban","t":"A castle, for solidity and protection","d":"Aban, a castle, is the most direct of the adinkra symbols: a grid with a cross for wall and gate. Cape Coast Castle in Ghana is what it is known for.","f":"fabric, architectural wrapping"},
+"aya":{"n":"Aya","t":"A fern, for enduring hardship","d":"The fern grows even in poor ground, and the adinkra name aya stands for endurance. A lobe cut into each side of the leaf is exactly what a fern does.","f":"fabric, wrapping, paper goods"},
+"damedame":{"n":"Damedame","t":"A game board, for skill and strategy","d":"The damedame board is a contest of wits in Akan play, and in adinkra it stands for strategy and skill. A square within a square is the usual way to draw it.","f":"fabric, wrapping, grounds"},
+"mframadan":{"n":"Mframadan","t":"A wind house, for standing up to weather","d":"Mframadan is a well-ventilated house, and in adinkra it means durability. A grid crossed through stands for wall and beam.","f":"fabric, architectural wrapping"},
+"owuoatwedee":{"n":"Owuo atwedee","t":"A ladder, for climbing step by step","d":"The ladder owuo atwedee means 'the ladder everyone must climb', and the adinkra teaching is about the road all must take. Three rungs are its skeleton.","f":"fabric, borders, cards"},
+"nkyimkyim":{"n":"Nkyimkyim","t":"Zigzag, for not walking straight","d":"Of the same origin as the nkyinkyim zigzag but closer set, stressing that life does not run straight. Drawing it in double lines makes the angles harder.","f":"fabric, grounds, wrapping"},
+"tibeb":{"n":"Tibeb band","t":"Ethiopian tibeb: the colored border strip at the end of a cloth","d":"Tibeb is the colored band at both ends of an Ethiopian cloth, small geometric figures set one after another in strong color. It is what identifies the cloth.","f":"textiles, borders, wrapping"},
+"berberhook":{"n":"Berber hook","t":"The hooked sign of Berber rugs","d":"A hook like a finger hangs inside the diamond of a Berber rug. It is one of the oldest protective signs there is, and North African villages still weave it.","f":"carpet style, fabric, wrapping"},
+"nubiadome":{"n":"Nubian dome","t":"The vault of a Nubian house: pointed and high","d":"Nubian houses are roofed with adobe vaults, small and high. The arched figures painted on the walls take the same shape as the doorway, and they are the most striking sight in Upper Egypt.","f":"architectural style, wrapping, mural style"},
+"maasaiband":{"n":"Maasai band","t":"Concentric color bands of Maasai beadwork","d":"Maasai beadwork is built on concentric rings in clear red, white and black, with the number of rings marking rank. Made into a pattern, it is circle within circle.","f":"beadwork style, fabric, wrapping"},
+"kubapatch":{"n":"Kuba patch","t":"The triangular patchwork of Kuba cloth, Congo's national textile","d":"Kuba cloth is woven from raffia and then pieced with triangles and squares, no two alike. It is counted among the finest textiles in Africa.","f":"patchwork style, fabric, wrapping"},
+"copticweave":{"n":"Coptic weave","t":"Coptic diagonal weaving, the textile of Christian Egypt","d":"Coptic textiles are woven in diagonal alternation, the figures mostly geometric or crosses. Egypt's dry sand preserved a great quantity of them, a treasury for the study of ancient weaving.","f":"textile style, book covers, wrapping"},
+"tunisiadot":{"n":"Tunisian dots","t":"The field of dots on Tunisian plates","d":"Tunisian plates like to set small circles into the white space, column after column, to make the main motif brighter. The same dotting appears in local embroidery.","f":"ceramic style, grounds, wrapping"},
+"morociron":{"n":"Moroccan ironwork","t":"The lobed grille over a Moroccan window","d":"Old windows in Moroccan towns are covered with an iron grille: quarter-circles pieced into lobes with a small cross welded in the middle. Security and streetscape at once.","f":"ironwork style, window grids, wrapping"},
+"faience":{"n":"Faience beads","t":"The beaded ground of Egyptian faience","d":"Egyptian faience beads were strung into necklaces, blue-green, one bead to a ring. The bead band later became a border pattern all round the Mediterranean.","f":"beadwork style, borders, wrapping"},
+"ndebelewall":{"n":"Ndebele wall","t":"The triangles of a painted Ndebele wall","d":"Ndebele women in South Africa paint a whole wall by hand in triangles, squares and zigzags alternating, in very bright color. It is one of the best-known folk arts in the country.","f":"painted style, wrapping, posters"},
+"somaliw":{"n":"Somali mat","t":"The over-and-under of a Somali palm mat","d":"Somali mats are woven from palm leaf, warp and weft crossing into squares. A nomadic household rolls them up and moves on — genuinely light baggage.","f":"weaving style, wrapping, backgrounds"},
+"wolofw":{"n":"Wolof mat","t":"Wolof mats from Senegal, in broad stripes","d":"Wolof mats carry broader, looser stripes because the grass is coarser. Change the width and the whole character goes from fine to breezy.","f":"weaving style, fabric, wrapping"},
+"ethband":{"n":"Ethiopian step band","t":"The stepped border on Ethiopian cloth, section by section","d":"Ethiopian cloth usually lifts a stepped figure along the border, one section after another, in strong contrast. It is livelier than a plain fret.","f":"textiles, borders, wrapping"},
+"zuluband":{"n":"Zulu bead band","t":"The triangle band of Zulu beadwork, where color is a language","d":"Color carries meaning in Zulu beadwork: white for purity, red for love, black for marriage. Triangles set out one after another make the commonest bead band.","f":"beadwork style, borders, wrapping"},
+"tswanapot":{"n":"Tswana pot","t":"The incised zigzags of Tswana pottery","d":"Tswana women incise zigzags and dots into the pot before it dries, and firing leaves them as dark grooves. The density of the zigzag is a clue to where the pot was made.","f":"pottery style, wrapping, cards"},
+"striploom":{"n":"Strip loom","t":"West African narrow-loom strips, sewn into cloth","d":"The West African loom is only a hand wide, so it produces one long strip and it takes dozens sewn side by side to make a cloth. The patterns are therefore naturally banded, and the seams became part of the design.","f":"textile style, wrapping, book covers"},
+"navajostorm":{"n":"Navajo storm","t":"The storm rug: lightning as zigzag, cloud as step","d":"Navajo storm rugs draw lightning as a zigzag and cloud as a step, and leave a gap at one corner, said to let the wind in and out. It is the most valuable class of their designs.","f":"textile style, wrapping, posters"},
+"navajobasket":{"n":"Navajo basket","t":"Navajo baskets: diamonds with a small diamond inside","d":"Navajo baskets are mostly diamonds with a smaller diamond nested in each, in red and black. Basket patterns are older than rug patterns and more often tied to creation stories.","f":"weaving style, wrapping, grounds"},
+"navajodiamond":{"n":"Navajo diamond","t":"Diamonds and crosses, the main motif of Navajo rugs","d":"The centre of a Navajo rug is usually one large diamond with a cross at each corner. The diamond is the mountain, the cross the four directions, and together they are a whole world.","f":"carpet style, fabric, wrapping"},
+"anasazi":{"n":"Anasazi black-on-white","t":"The triangles of Anasazi black-on-white, black on white","d":"Anasazi potters painted black figures on white: triangles, sawteeth and steps in turn. They lived in cliff alcoves, and their pottery is one of the few things they left behind.","f":"pottery style, wrapping, posters"},
+"mayastep":{"n":"Maya stair","t":"The stair profile of a Maya pyramid","d":"Maya pyramid steps are steep and narrow, a run of sawteeth seen from the side. Abstracted into a pattern, it becomes the Maya stair, found in their murals and pottery.","f":"architectural style, wrapping, posters"},
+"mayamat":{"n":"Maya mat","t":"The Maya 'mat' pattern, sign of the throne","d":"In Maya, 'cushion' and 'royal power' share a root, so the mat pattern stands for the throne. A grid with a diagonal through it is the classic way they drew it.","f":"textile style, wrapping, book covers"},
+"aztecthread":{"n":"Aztec line ground","t":"Parallel lines behind Aztec carving, standing for cloth or water","d":"Aztec stone carving often cuts a row of parallel lines behind the main motif for cloth or water. The spacing is extremely even, and it is here that a carver's hand shows.","f":"stone-carving style, grounds, wrapping"},
+"aztectriangle":{"n":"Aztec triangle","t":"Triangles in rows, the border of an Aztec plate","d":"The rim of an Aztec plate is usually a row of triangles, one up and one down, like a sawtooth. The triangle stood for light and fire.","f":"pottery style, borders, wrapping"},
+"mixtec":{"n":"Mixtec inlay","t":"Mixtec turquoise mosaic","d":"Mixtec craftsmen cut turquoise into small pieces and set them into grids and diamonds on bone masks and shields. The diamond inside the square is their standard unit.","f":"inlay style, wrapping, jewellery boxes"},
+"zapotec":{"n":"Zapotec net","t":"The diagonal net of Monte Albán stone carving","d":"The stonework of Monte Albán is covered in a fine diagonal net with dancers and glyphs caught between. The net stands for the furrows of a maize field.","f":"stone-carving style, grounds, wrapping"},
+"incacheck":{"n":"Inca checker","t":"Inca checks, marks of formation and storehouse","d":"The Inca used a checker to record troop formations and storehouses, qollqa, one square for a company or a granary. A square within a square is a common sign on quipu cords.","f":"textile style, wrapping, grounds"},
+"tocapu":{"n":"Tocapu","t":"Tocapu, the square signs on Inca royal dress","d":"Tocapu are the geometric signs set square by square on Inca noble dress; each may carry meaning, and they are not fully deciphered. A rare thing in pattern — a text still waiting to be read.","f":"textile style, wrapping, posters"},
+"nazca":{"n":"Nazca line","t":"The long parallel lines scraped across the Nazca desert","d":"The Nazca scraped straight lines and curves kilometres long into the desert, two at a time, always equidistant. From the ground they mean nothing; from the air they are a drawing.","f":"minimal style, posters, wrapping"},
+"moche":{"n":"Moche","t":"The six-petal flower on Moche pots","d":"Moche pots often carry a six-petal flower beside faces and animals. Their pottery is so naturalistic that expressions survive, and it is among the finest in South America.","f":"pottery style, wrapping, cards"},
+"kene":{"n":"Kené","t":"Kené: the hooked geometry of the Amazon","d":"Kené is the geometry painted on bodies and cloth by Amazonian peoples such as the Shipibo: hooks, diamonds and broken lines combined, each passage answering to a song.","f":"fabric, wrapping, posters"},
+"serrano":{"n":"Serrano basket","t":"Serrano baskets, warp and weft alternating","d":"The Serrano weave baskets from suma grass, warp and weft crossing into squares at a density that can hold water. Basket weave is the pattern that shows its own construction most plainly.","f":"weaving style, wrapping, backgrounds"},
+"mississippian":{"n":"Mississippian cross","t":"The forked cross of the Mississippian mound builders","d":"Forked crosses are common on the pottery and shell of the Mississippian culture of North America, each of the four arms opening into two. They usually appear with the sun and the four directions.","f":"pottery style, wrapping, posters"},
+"hopi":{"n":"Hopi","t":"The zigzags of Hopi pottery: rain and cloud","d":"On Hopi pots the zigzag is rain and the step is cloud. They live on a dry plateau, so water is what their patterns are mostly about.","f":"pottery style, wrapping, posters"},
+"zuni":{"n":"Zuni cloud","t":"The fan-shaped cloud of Zuni, feathered at the edge","d":"On Zuni silver and pottery a cloud is a fan with fine feathers along the edge. The feathers are the rain, the fan is the cloud head.","f":"silverwork style, wrapping, cards"},
+"ojibwe":{"n":"Ojibwe beadwork","t":"The four-petal flowers of Ojibwe bead embroidery","d":"The Ojibwe of the Great Lakes embroidered four-petal flowers in glass beads, one beside the next, in graded color. That floral beadwork later set the tone for beadwork across Native North America.","f":"beadwork style, fabric, wrapping"},
+"lakota":{"n":"Lakota morning star","t":"The Lakota morning star: eight points inside a ring","d":"The Lakota draw the morning star as an eight-point star inside a ring, for dawn. In their cosmology stars are the eyes of the ancestors.","f":"beadwork style, wrapping, posters"},
+"inuit":{"n":"Inuit","t":"The triangles of Inuit carving, ice and snow block","d":"Inuit carving and embroidery are mostly triangles, for cracked ice and the blocks of a snow house. The forms are minimal because there was no material to waste.","f":"minimal style, wrapping, posters"},
+"kwakiutl":{"n":"Kwakiutl","t":"The ovoid curves of the Northwest Coast","d":"The Kwakiutl of the Northwest Coast draw animals with ovoids — eye, nose and mouth all pulled into curling forms. Here the outermost double-arc skeleton is what is taken.","f":"woodcarving style, wrapping, posters"},
+"wayuu":{"n":"Wayuu","t":"The tight grid of a Wayuu mochila bag","d":"Wayuu women of Colombia and Venezuela crochet mochila bags with stitches so fine that a centimetre holds a dozen. How close the grid runs is the measure of the hand.","f":"weaving style, bags, fabric"},
+"teotihuacan":{"n":"Teotihuacan step","t":"The stepped fret of Teotihuacan, at the Temple of the Feathered Serpent","d":"On the base of the Temple of the Feathered Serpent the stepped fret coils round and round with serpent heads caught between. Teotihuacan was the largest city in the Americas, and its ornament is remarkably restrained.","f":"architectural style, wrapping, posters"},
+"toltec":{"n":"Toltec spiral","t":"The Toltec spiral, worn on the chest of the warrior figures","d":"The warrior figures at Tula carry a spiral on the chest for the god of wind. The Aztecs later took the Toltec as ancestors, and the spiral came down with them.","f":"stone-carving style, wrapping, cards"},
+"azteccarpet":{"n":"Aztec carpet","t":"An eight-point star in each diamond, on Aztec cloth and floors","d":"An eight-point star set in each diamond is a common arrangement on Aztec textiles and floors. To them the eight-point star was Venus.","f":"carpet style, fabric, wrapping"},
+"mayacroix":{"n":"Maya cross","t":"The Maya cross, a trefoil on each arm: the world tree","d":"The Maya world tree, Wacah Chan, is a cross with a branch opening from each arm, for the four directions and the zenith. The cross is everywhere in their imagery.","f":"mythic style, wrapping, posters"},
+"incasun":{"n":"Inca sun","t":"The Inca sun, twelve rays","d":"The Inca sun god Inti is shown as a gold disc with rays. The Coricancha in Cusco was once covered in gold; only the stone footings remain.","f":"goldwork style, wrapping, posters"},
+"otomi":{"n":"Otomi flower","t":"The five-petal flowers of Otomi embroidery on the Mexican plateau","d":"Otomi embroidery in Mexico is mostly five-petal flowers, birds and deer in intense color. In their myth the world opened from a flower.","f":"embroidery style, fabric, wrapping"},
+"tarahumara":{"n":"Tarahumara diamond","t":"The diamonds of the Tarahumara, in the Copper Canyon","d":"The Tarahumara live in Mexico's Copper Canyon, their cloth a dense field of diamonds in red and white. They still run the long race they call rarámuri.","f":"fabric, wrapping, posters"},
+"quechua":{"n":"Quechua belt","t":"The Quechua belt, diamond after diamond","d":"On an Andean belt, a chumpi, diamonds follow one another, and the color of each section belongs to a village. The belt is an identity document.","f":"textile style, borders, wrapping"},
+"aymara":{"n":"Aymara step","t":"The stepped figures of Aymara cloth, by Lake Titicaca","d":"In Aymara cloth the step stands for the mountain, and the mountains by the lake are their gods. The step rises section by section like a ridge line.","f":"textile style, borders, wrapping"},
+"diaguita":{"n":"Diaguita zigzag","t":"The zigzags of Diaguita pottery, northwest Argentina","d":"Diaguita pottery is mostly black and white zigzags, drawn clean. They resisted both the Inca and the Spanish, and there is something hard in the pattern too.","f":"pottery style, wrapping, posters"},
+"selknam":{"n":"Selk'nam","t":"Selk'nam body painting: triangles and lines","d":"The Selk'nam of Tierra del Fuego painted triangles and lines on the body for initiation and mourning. The people disappeared in the twentieth century, and the patterns survive only in photographs.","f":"body-paint style, posters, wrapping"},
+"guarani":{"n":"Guaraní","t":"The six-petal flower of Guaraní, Paraguay","d":"Guaraní ñandutí is a lace like a spider's web, with a six-petal flower opening in each circle. In their language the words for flower and child are the same.","f":"lace style, fabric, wrapping"},
+"carib":{"n":"Carib net","t":"The netting of the Caribbean islands","d":"Caribbean fishing nets are hexagonal mesh, and spread out to dry on shore they are one broad pattern. Net knots and woven pattern come from the same root.","f":"net style, backgrounds, wrapping"},
+"chavin":{"n":"Chavín","t":"The spirals of Chavín, oldest of Andean deities","d":"On the faces of the gods at Chavín de Huántar the hair and beard are all spirals. This is the oldest mature art of the Andes, two thousand years before the Inca.","f":"stone-carving style, posters, wrapping"},
+"taino":{"n":"Taíno","t":"The four-lobed sign of the Taíno, first peoples of the Caribbean","d":"The Taíno were the first peoples of the Caribbean islands, and four-lobed signs cut on stone balls and pottery stand for the four directions. They are also where the words canoe and hurricane come from.","f":"pottery style, wrapping, cards"},
+"lasem":{"n":"Lasem","t":"The batik of Lasem on Java's north coast, in red and blue","d":"Lasem, on the north coast of Java, is a batik town of Chinese settlement, its patterns mixed with Chinese birds, flowers and peony red. Locals call it the little red town.","f":"batik style, fabric, wrapping"},
+"indotri":{"n":"Tumpal","t":"The triangle border of Indonesian cloth, section by section","d":"The borders of Indonesian brocade are often a row of triangles, called tumpal. There it means mountain and beginning, and it usually runs along the hem of a sarong.","f":"textile style, borders, wrapping"},
+"indostep":{"n":"Sumba step","t":"The stepped border, skeleton of Sumba brocade","d":"Sumba brocade fills the whole cloth with stepped figures in red, blue and black. The step is the stair up to the ancestors.","f":"brocade style, borders, wrapping"},
+"thaikranok":{"n":"Kranok","t":"Thai kranok: a flame-shaped scroll","d":"Kranok is the core vocabulary of Thai ornament: flame-like and vine-like at once, pointed and curling. Temple gables, door frames and manuscript edges are all held up by it.","f":"Thai style, wrapping, book covers"},
+"thaichain":{"n":"Thai chain","t":"Diamond chain, the edge of Thai woodcarving","d":"Thai carved and painted frames usually take a diamond chain, link after link, with small flowers between. Its job is to close the edge.","f":"woodcarving style, borders, wrapping"},
+"thailat":{"n":"Thai silk lattice","t":"A flower in each diamond, the ground of Thai silk","d":"The ground of Thai silk, mat mi, is mostly small flowers set in diamonds — close grid, small flower — which makes the main motif stand out. The handwoven silk of the northeast is the most famous.","f":"silk style, fabric, wrapping"},
+"laow":{"n":"Lao weave","t":"The Lao border, diamonds packed close","d":"A Lao sinh skirt has three parts — head, body and foot — and the foot is dense diamonds and stripes, mostly red. One takes months to weave.","f":"textile style, borders, wrapping"},
+"myanw":{"n":"Myanmar weave","t":"The Myanmar weave: a grid with one diagonal","d":"Myanmar's acheik weave uses hundreds of heddles to build waves and checks. A grid with a single diagonal is their plainest ground.","f":"textile style, grounds, wrapping"},
+"vietdong":{"n":"Đông Sơn spiral","t":"The spirals of Đông Sơn drums, Vietnam's oldest pattern","d":"On the face of Đông Sơn bronze drums, from around 500 BC, spirals spread ring after ring from the centre. It is the oldest system of pattern in Vietnam.","f":"drum style, wrapping, posters"},
+"vietw":{"n":"Vietnamese weave","t":"The stepped border of Vietnamese brocade, woven by the Thái","d":"Brocade of the Thái in northwest Vietnam sets steps and diamonds along the border in strong contrast. Their loom is worked with the feet.","f":"textile style, borders, wrapping"},
+"koreancloud":{"n":"Korean cloud","t":"Korean cloud: stacked half-circles, beyond the four gentlemen","d":"Joseon-dynasty clouds are stacked half-circles, one over another, paired with pine, crane, sun and moon. The clouds in folk painting are always round, never as square as a Chinese cloud head.","f":"folk-painting style, wrapping, cards"},
+"koreanman":{"n":"Korean wan","t":"The Korean wan border, on window lattice and railing","d":"Korean windows and railings often link the swastika, called manja, for unbroken continuance. It shares its origin with the Chinese wan without end.","f":"architectural style, borders, wrapping"},
+"koreangrid":{"n":"Korean window grid","t":"A Korean window grid with a cross in each cell","d":"The lattice of a hanok window comes in several kinds — well, the aja character, the wan character — usually with a cross added in each cell. Once papered, the light coming through is the pattern.","f":"window-lattice style, wrapping, book covers"},
+"rangolipw":{"n":"Rangoli grid","t":"Rangoli, the flour flower spread at the door","d":"Rangoli is the rice-flour flower an Indian woman spreads at the door each morning, dots and lines joined into a symmetrical figure, said to invite good fortune. At Diwali it is at its most elaborate.","f":"festive style, wrapping, posters"},
+"kolamdot":{"n":"Kolam dots","t":"Kolam: lines looped around a grid of dots","d":"A kolam first sets out its dots, then draws one line looping around them all, with the rule that it never lifts. At every doorway in South India it is redrawn each morning.","f":"festive style, wrapping, posters"},
+"warli":{"n":"Warli","t":"Warli painting: figures of triangles, fields of triangles","d":"Warli wall painting builds a human figure from two triangles, and everything else from triangles and circles. They live in the hills near Mumbai and paint the everyday and the divine.","f":"mural style, posters, wrapping"},
+"shisha":{"n":"Shisha mirror work","t":"Shisha: small mirrors sewn into cloth","d":"Shisha embroidery of northwest India sets fragments of mirror into cloth, ringed with buttonhole stitch. Mirror is said to turn the evil eye, and it flashes well when you dance.","f":"embroidery style, fabric, wrapping"},
+"mehndi":{"n":"Mehndi","t":"Mehndi: the fine vine drawn on the hand","d":"Mehndi is the vine and flower drawn on the palm before a wedding, the pigment from henna leaf. The denser the drawing, the more the hand shows.","f":"tattoo style, wedding paper goods, wrapping"},
+"sari":{"n":"Sari border","t":"The zari border of a sari, a fret in gold thread","d":"The border of a sari is its zari, a fret or floral edge woven in gold thread, its width set by the occasion. A wedding border is often a hand wide.","f":"textile style, borders, gift boxes"},
+"padma":{"n":"Padma lotus","t":"The lotus, the eight-petal padma of India","d":"The lotus is central to both Hinduism and Buddhism, and the eight-petal form is the commonest, for the eight directions. Temple doors, mandalas and cloth all carry it.","f":"religious style, wrapping, posters"},
+"nepalimandala":{"n":"Nepali mandala","t":"The Nepali mandala: a roundel with twelve rays","d":"A Nepali mandala takes a circle as its centre and radiates outward in layers, square and circle alternating. It is painted on thangka and carved into temple ceilings.","f":"thangka style, gift boxes, covers"},
+"lankalotus":{"n":"Sri Lankan lotus","t":"The pointed lotus petals of Sri Lanka, edging the stone","d":"Around Sri Lankan stupas and moonstones a ring of pointed lotus petals faces outward. The moonstone is a threshold stone found only in Sri Lanka.","f":"stone-carving style, borders, wrapping"},
+"balipoleng":{"n":"Poleng","t":"Poleng, the black-and-white check of Bali","d":"Poleng on Bali is a check of black and white, wrapped around sacred trees, stone figures and the guardian spirits at a gate, for good and evil existing together. It is the most conspicuous sign on the island.","f":"folk style, wrapping, posters"},
+"papuanet":{"n":"Bilum","t":"The bilum of Papua New Guinea, a hexagonal net bag","d":"A bilum is a net bag knotted from bark fibre; women carry children and everything else in it. How open the mesh is depends on what it is for.","f":"net style, backgrounds, wrapping"},
+"aussnake":{"n":"Rainbow serpent","t":"The Rainbow Serpent of Aboriginal Australia, drawn as a wave","d":"The Rainbow Serpent is the central figure of Aboriginal creation myth, drawn as a rising and falling wave. Where it travelled became rivers and ridge lines.","f":"Aboriginal style, posters, wrapping"},
+"aussfoot":{"n":"Footprints and stars","t":"Footprints and stars in Australian dot painting","d":"Australian dot painting builds its figures from tens of thousands of dots, and the story lives in the spaces between. Footprints, waterholes and stars are all made of dots.","f":"dot-painting style, posters, wrapping"},
+"maoriweave":{"n":"Māori weave","t":"The diamonds of Māori weaving, in harakeke flax","d":"Māori weave harakeke, New Zealand flax, with diamonds and twill as the basic structures. Every piece has its own name and its own song.","f":"weaving style, fabric, wrapping"},
+"fijimasi":{"n":"Masi","t":"Masi, Fijian bark cloth: checks and dark figures","d":"Masi is beaten from paper-mulberry bark and printed with a slip of bamboo dipped in black dye, in checks and geometric figures. Fijian ceremony cannot do without it.","f":"bark-cloth style, wrapping, posters"},
+"samoasiapo":{"n":"Siapo","t":"Siapo, Samoan bark cloth, pieced in triangles","d":"Samoan siapo pieces bark cloth into triangles and squares, dark brown against cream. It is a treasured thing at weddings and funerals.","f":"bark-cloth style, wrapping, posters"},
+"hawaiiquilt":{"n":"Hawaiian quilt","t":"Hawaiian quilt: one great flower across the whole cloth","d":"The Hawaiian quilt is not cut into pieces: one large flower is laid across the whole cloth, symmetrical on both diagonals. Missionaries brought the stitch, and the islands made it their own.","f":"quilt style, wrapping, posters"},
+"malayawan":{"n":"Awan larat","t":"Awan larat, the cloud scroll of Malay woodcarving","d":"Awan larat means 'cloud spreading', and Malay carving and textile borders use it band after band without a break.","f":"woodcarving style, borders, wrapping"},
+"malayuku":{"n":"Ukir scroll","t":"The vine scroll of Malay ukir, the basic stroke of the carver","d":"The basic stroke of Malay woodcarving, ukir, is a section of vine: tight at the centre of the curl and loosening at the tail. A whole piece of furniture is these scrolls joined together.","f":"woodcarving style, furniture, wrapping"},
+"easter":{"n":"Rapa Nui","t":"The zigzags of Rapa Nui, in rock art and rongorongo","d":"Rapa Nui rock art and the rongorongo boards carry many zigzags and bird figures. The zigzag is the sea, and also the flight of the birdman.","f":"rock-art style, posters, wrapping"}
+};
+
+/* ---------------- 语言 ---------------- */
+var LANG='zh';
+var _lgq=(location.search.match(/[?&]lang=(en|zh)/)||[])[1];
+if(_lgq) LANG=_lgq;
+try{ if(!_lgq){ var _lg=localStorage.getItem('wenpu.lang'); if(_lg==='en'||_lg==='zh') LANG=_lg; } }catch(e){}
+function isEN(){ return LANG==='en'; }
+function T(zh,en){ return isEN()?(en==null?zh:en):zh; }
+function setLang(l){
+  LANG=(l==='en')?'en':'zh';
+  try{ localStorage.setItem('wenpu.lang',LANG); }catch(e){}
+  document.documentElement.lang=isEN()?'en':'zh-CN';
+  applyStatic();
+  rebuildLang();
+}
 
 /* ---------------- 状态 ---------------- */
 var state={
@@ -5663,14 +6071,51 @@ var state={
   age:0, cw:2000, ch:2000
 };
 var GNAME={cn:'中国',jp:'日本',islam:'西亚·中亚',eu:'欧洲',af:'非洲',am:'美洲',ap:'亚太'};
+var GNAME_EN={cn:'China',jp:'Japan',islam:'West & Central Asia',eu:'Europe',af:'Africa',am:'Americas',ap:'Asia-Pacific'};
+function gname(g){ return isEN()?(GNAME_EN[g]||GNAME[g]||''):(GNAME[g]||''); }
+function LF(o,k){ var v=isEN()?(o[k+'_en']):null; return (v!=null)?v:o[k]; }
+function MEN_of(id){ return (typeof MENU!=='undefined'&&MENU[id])?MENU[id]:null; }
+function mName(m){ var e=MEN_of(m.id); return (isEN()&&e&&e.n)?e.n:m.name; }
+function mNote(m){ var e=MEN_of(m.id); return (isEN()&&e&&e.t)?e.t:(m.note||''); }
+function mDesc(m){ var e=MEN_of(m.id); return (isEN()&&e&&e.d)?e.d:(m.desc||m.note||''); }
+function mFit(m){ var e=MEN_of(m.id); return (isEN()&&e&&e.f)?e.f:(m.fit||''); }
 try{
   var sv=localStorage.getItem('wenpu.state.v3')||localStorage.getItem('wenpu.state.v2');
   if(sv){ var o=JSON.parse(sv); for(var k in o) if(k in state) state[k]=o[k]; }
 }catch(e){}
 function save(){ try{ localStorage.setItem('wenpu.state.v3',JSON.stringify(state)); }catch(e){} }
 
+function applyStatic(){
+  var els=document.querySelectorAll('[data-zh],[data-en-html]');
+  for(var i=0;i<els.length;i++){
+    var e=els[i], zh=e.getAttribute('data-zh'), en=e.getAttribute('data-en'), eh=e.getAttribute('data-en-html');
+    if(eh){
+      if(!e.hasAttribute('data-zh-html')) e.setAttribute('data-zh-html', e.innerHTML);
+      e.innerHTML=isEN()?eh:e.getAttribute('data-zh-html');
+      continue;
+    }
+    if(zh!=null) e.textContent=(isEN()&&en!=null)?en:zh;
+  }
+  var ph=document.querySelectorAll('[data-en-ph]');
+  for(var j=0;j<ph.length;j++){
+    var p=ph[j];
+    if(!p.hasAttribute('data-zh-ph')) p.setAttribute('data-zh-ph', p.getAttribute('placeholder')||'');
+    p.setAttribute('placeholder', isEN()?p.getAttribute('data-en-ph'):p.getAttribute('data-zh-ph'));
+  }
+  document.title=T('纹谱 · 世界纹样生成器','Wenpu · World Pattern Generator');
+  document.documentElement.lang=isEN()?'en':'zh-CN';
+  var lb=document.getElementById('btnLang');
+  if(lb){ lb.textContent=isEN()?'中':'EN'; lb.title=isEN()?'切回中文':'Switch to English'; }
+}
+
+var UI_BOXES=['uses','mgroups','motifs','pairs','fgs','bgs','pos','syms','exps','copies','moods','ages','ratioBox','picked'];
+function rebuildLang(){
+  for(var i=0;i<UI_BOXES.length;i++){ var e=document.getElementById(UI_BOXES[i]); if(e) e.innerHTML=''; }
+  buildUi(); draw();
+}
+
 function useOf(id){
-  if(id==='custom') return {id:'custom',name:'自定义',W:state.cw,H:state.ch,note:state.cw+'×'+state.ch+'px'};
+  if(id==='custom') return {id:'custom',name:T('自定义','Custom'),W:state.cw,H:state.ch,note:state.cw+'×'+state.ch+'px'};
   for(var i=0;i<USES.length;i++) if(USES[i].id===id) return USES[i];
   return USES[0];
 }
@@ -5721,7 +6166,7 @@ function drawGrid(ctx,W,H,st,mx,my,cw,ch){
   ctx.font='400 '+fs+'px "Songti SC","STSong",serif';
   ctx.fillStyle=dark?'rgba(240,232,214,.62)':'rgba(70,58,44,.58)';
   ctx.textAlign='left'; ctx.textBaseline='top';
-  ctx.fillText('每格 '+mm.toFixed(1)+' mm · 共 '+st.cells+' 格', mx+fs*0.5, my+fs*0.4);
+  ctx.fillText(T('每格 '+mm.toFixed(1)+' mm · 共 '+st.cells+' 格','Cell '+mm.toFixed(1)+' mm · '+st.cells+' cells'), mx+fs*0.5, my+fs*0.4);
   ctx.restore();
 }
 
@@ -5891,7 +6336,7 @@ function render(ctx,W,H,st,k){
   }
 }
 
-/* ---------------- 母题缩略图 ---------------- */
+/* ---------------- 图案元素缩略图 ---------------- */
 function thumbInto(c2,m){
   var x=c2.getContext('2d');
   x.setTransform(1,0,0,1,0,0); x.clearRect(0,0,c2.width,c2.height);
@@ -5935,11 +6380,11 @@ function draw(){
   render(ctx,dw,dh,state,dpr);
   var m=motifOf(state.motif);
   document.getElementById('cap').innerHTML=
-    '<b>'+U.name+'</b> · '+U.W+' × '+U.H+' px'+(state.age?' · 做旧 '+state.age+'%':'');
+    '<b>'+LF(U,'name')+'</b> · '+U.W+' × '+U.H+' px'+(state.age?T(' · 做旧 '+state.age+'%',' · aged '+state.age+'%'):'');
   renderKnow(m);
   var es=document.getElementById('expSize');
-  if(es) es.textContent='本次输出 '+U.W+' × '+U.H+' px'+(state.age?'，带做旧':'');
-  document.getElementById('stat').textContent='四方连续 · 可无缝平铺';
+  if(es) es.textContent=T('本次输出 '+U.W+' × '+U.H+' px'+(state.age?'，带做旧':''),'Output '+U.W+' × '+U.H+' px'+(state.age?', aged':''));
+  document.getElementById('stat').textContent=T('四方连续 · 可无缝平铺','Seamless repeat · tiles without gaps');
   refreshPairs();
   save();
 }
@@ -5950,23 +6395,23 @@ function renderKnow(m){
   if(!box) return;
   var idx=0;
   for(var i=0;i<MOTIFS.length;i++) if(MOTIFS[i].id===m.id){ idx=i+1; break; }
-  var h='<div class="know-h"><b>'+m.name+'</b><em>'+(GNAME[m.g]||'')+'</em>'
-    +'<span>第 '+idx+' / '+MOTIFS.length+' 种</span>'
-    +'<button class="know-tog" id="knowTog">收起</button></div>';
-  h+='<p>'+(m.desc||m.note||'')+'</p>';
-  if(m.fit) h+='<div class="fit"><b>可 用 于</b>　'+m.fit+'</div>';
+  var h='<div class="know-h"><b>'+mName(m)+'</b><em>'+gname(m.g)+'</em>'
+    +'<span>'+T('第 '+idx+' / '+MOTIFS.length+' 种',idx+' of '+MOTIFS.length)+'</span>'
+    +'<button class="know-tog" id="knowTog">'+T('收起','Collapse')+'</button></div>';
+  h+='<p>'+mDesc(m)+'</p>';
+  if(m.fit) h+='<div class="fit"><b>'+T('可 用 于','BEST FOR')+'</b>　'+mFit(m)+'</div>';
   box.innerHTML=h;
   var tg=document.getElementById('knowTog');
   tg.onclick=function(){
     box.classList.toggle('fold');
-    tg.textContent=box.classList.contains('fold')?'展开':'收起';
+    tg.textContent=box.classList.contains('fold')?T('展开','Expand'):T('收起','Collapse');
   };
 }
 
 /* ---------------- 导出 ---------------- */
 function withBusy(fn){
   var b1=document.getElementById('btnPng'), b2=document.getElementById('btnSvg');
-  b1.disabled=b2.disabled=true; var t=b1.textContent; b1.textContent='生成中…';
+  b1.disabled=b2.disabled=true; var t=b1.textContent; b1.textContent=T('生成中…','Rendering…');
   setTimeout(function(){
     try{ fn(); }catch(e){ console.error(e); }
     b1.disabled=b2.disabled=false; b1.textContent=t;
@@ -6014,15 +6459,15 @@ function exportImg(fmt){
     var ext=(fmt==='jpg')?'jpg':(fmt==='webp')?'webp':'png';
     if(fmt==='jpg'||fmt==='webp'){
       c.toBlob(function(bl){
-        if(!bl){ flash('这个浏览器不支持该格式，已改用 PNG'); exportImg('png'); return; }
+        if(!bl){ flash(T('这个浏览器不支持该格式，已改用 PNG','This format is not supported here — saved as PNG instead')); exportImg('png'); return; }
         dl(bl, baseName()+(trans?'_transparent':'')+'.'+ext);
-        flash('已导出 '+ext.toUpperCase());
+        flash(T('已导出 ','Saved ')+ext.toUpperCase());
       },mime,(fmt==='jpg')?0.85:0.90);
     }else{
       c.toBlob(function(bl){
         if(!bl) return;
         dl(bl, baseName()+(trans?'_transparent':'')+'.'+ext);
-        flash('已导出 '+(trans?'透明 PNG':'PNG'));
+        flash(T('已导出 ','Saved ')+(trans?T('透明 PNG','transparent PNG'):'PNG'));
       },'image/png');
     }
   });
@@ -6084,7 +6529,7 @@ function exportPdf(){
     var wPt=Math.round(U.W/300*72*100)/100, hPt=Math.round(U.H/300*72*100)/100;
     var bytes=pdfBytes(jpg,wPt,hPt,U.W,U.H);
     dl(new Blob([bytes],{type:'application/pdf'}), baseName()+'.pdf');
-    flash('已导出 PDF · '+wPt+'×'+hPt+'pt');
+      flash(T('已导出 PDF · ','Saved PDF · ')+wPt+'×'+hPt+'pt');
   });
 }
 
@@ -6098,13 +6543,14 @@ function copyCss(){
             'background-image:url("'+url+'");\n'+
             'background-repeat:repeat;\n'+
             'background-size:96px 96px;';
-    copyText(css,'平铺 CSS 已复制');
+    copyText(css,T('平铺 CSS 已复制','Tile CSS copied'));
   });
 }
 function copySwatch(){
   var m=motifOf(state.motif);
-  var t='纹谱 · '+m.name+'\n纹色 '+state.fg+'\n底色 '+state.bg+'\n线宽 '+(state.lw/100).toFixed(2)+' · '+state.cells+' 格';
-  copyText(t,'配色已复制');
+  var t=T('纹谱 · ','Wenpu · ')+mName(m)+T('\n纹色 ','\nInk ')+state.fg+T('\n底色 ','\nPaper ')+state.bg
+    +T('\n线宽 ','\nWeight ')+(state.lw/100).toFixed(2)+T(' · '+state.cells+' 格',' · '+state.cells+' cells');
+  copyText(t,T('配色已复制','Colors copied'));
 }
 function copyText(t,okMsg){
   if(navigator.clipboard && navigator.clipboard.writeText){
@@ -6116,7 +6562,7 @@ function fallbackCopy(t,okMsg){
   var ta=document.createElement('textarea');
   ta.value=t; ta.style.cssText='position:fixed;left:-9999px';
   document.body.appendChild(ta); ta.select();
-  try{ document.execCommand('copy'); flash(okMsg); }catch(e){ flash('复制失败，请手动选取'); }
+  try{ document.execCommand('copy'); flash(okMsg); }catch(e){ flash(T('复制失败，请手动选取','Copy failed — please select manually')); }
   ta.remove();
 }
 function n(v){ return Math.round(v*100)/100; }
@@ -6207,19 +6653,19 @@ function buildUi(){
   var useBox=document.getElementById('uses');
   USES.forEach(function(u){
     var b=document.createElement('button');
-    b.className='chip use'; b.type='button'; b.textContent=u.name;
+    b.className='chip use'; b.type='button'; b.textContent=LF(u,'name');
     b.setAttribute('aria-pressed', u.id===state.use?'true':'false');
     b.onclick=function(){
       state.use=u.id;
       Array.prototype.forEach.call(useBox.children,function(c,i){ c.setAttribute('aria-pressed', USES[i].id===state.use?'true':'false'); });
-      document.getElementById('useInfo').textContent=u.note;
+      document.getElementById('useInfo').textContent=LF(u,'note');
       document.getElementById('cusBox').style.display=(u.id==='custom')?'block':'none';
       draw();
     };
     useBox.appendChild(b);
   });
   var cur=useOf(state.use);
-  document.getElementById('useInfo').textContent=cur.note;
+  document.getElementById('useInfo').textContent=LF(cur,'note');
 
   var mh=document.getElementById('motifs');
   mh.style.cssText='display:flex;flex-wrap:wrap;gap:7px';
@@ -6230,18 +6676,18 @@ function buildUi(){
     for(var i=0;i<all.length;i++)
       all[i].setAttribute('aria-pressed', all[i].getAttribute('data-id')===state.motif?'true':'false');
     var cur=motifOf(state.motif);
-    document.getElementById('mInfo').textContent='当前：'+cur.name+' · '+(cur.note||'');
+    document.getElementById('mInfo').textContent=T('当前：','Selected: ')+mName(cur)+' · '+mNote(cur);
   }
   function mchipEl(m){
     var b=document.createElement('button');
     b.className='mchip'; b.type='button';
     b.setAttribute('data-id',m.id);
     b.setAttribute('aria-pressed', m.id===state.motif?'true':'false');
-    b.title=m.name+(m.note?(' · '+m.note):'');
+    b.title=mName(m)+(mNote(m)?(' · '+mNote(m)):'');
     var t=document.createElement('canvas'); t.width=96; t.height=96;
     t.style.width='32px'; t.style.height='32px';
     b.appendChild(t);
-    var sp=document.createElement('span'); sp.textContent=m.name; b.appendChild(sp);
+    var sp=document.createElement('span'); sp.textContent=mName(m); b.appendChild(sp);
     b.onclick=function(){ state.motif=m.id; syncMotifs(); draw(); };
     thumbInto(t,m);
     return b;
@@ -6256,7 +6702,7 @@ function buildUi(){
         var sub=document.createElement('div');
         sub.className='msub';
         sub.style.flex='1 0 100%';
-        sub.innerHTML='<b>'+GNAME[m.g]+'</b><span>'+cntOf(m.g)+' 种</span>';
+        sub.innerHTML='<b>'+gname(m.g)+'</b><span>'+T(cntOf(m.g)+' 种',cntOf(m.g)+' motifs')+'</span>';
         mh.appendChild(sub);
       }
       mh.appendChild(mchipEl(m));
@@ -6266,7 +6712,7 @@ function buildUi(){
   var grpBox=document.getElementById('mgroups');
   GROUPS.forEach(function(g,gi){
     var gb=document.createElement('button');
-    gb.className='chip use'; gb.type='button'; gb.textContent=g[1];
+    gb.className='chip use'; gb.type='button'; gb.textContent=g[isEN()?2:1];
     gb.setAttribute('aria-pressed', g[0]==='all'?'true':'false');
     gb.onclick=function(){
       curGroup=g[0];
@@ -6276,7 +6722,7 @@ function buildUi(){
       }
       renderMotifs();
       draw();
-      flash('已切到 '+(GNAME[curGroup]||'全部')+'，并选定一种纹样');
+      flash(T('已切到 '+(GNAME[curGroup]||'全部')+'，并选定一种纹样','Switched to '+(curGroup==='all'?'All':gname(curGroup))+' and picked one pattern'));
     };
     grpBox.appendChild(gb);
   });
@@ -6284,25 +6730,25 @@ function buildUi(){
 
   var cells=document.getElementById('cells'), lw=document.getElementById('lw'), mg=document.getElementById('margin');
   cells.value=state.cells; lw.value=state.lw; mg.value=state.margin;
-  document.getElementById('cellsV').textContent=state.cells+' 格';
+  document.getElementById('cellsV').textContent=T(state.cells+' 格',state.cells+' cells');
   document.getElementById('lwV').textContent=(state.lw/100).toFixed(2);
   document.getElementById('marginV').textContent=state.margin+'%';
-  cells.oninput=function(){ state.cells=+cells.value; document.getElementById('cellsV').textContent=state.cells+' 格'; draw(); };
+  cells.oninput=function(){ state.cells=+cells.value; document.getElementById('cellsV').textContent=T(state.cells+' 格',state.cells+' cells'); draw(); };
   lw.oninput=function(){ state.lw=+lw.value; document.getElementById('lwV').textContent=(state.lw/100).toFixed(2); draw(); };
   mg.oninput=function(){ state.margin=+mg.value; document.getElementById('marginV').textContent=state.margin+'%'; draw(); };
 
   var txt=document.getElementById('txt');
   txt.value=state.text;
-  if(state.text) document.getElementById('txtHint').textContent='已显示';
+  if(state.text) document.getElementById('txtHint').textContent=T('已显示','shown');
   txt.oninput=function(){
     state.text=txt.value;
     var hint=document.getElementById('txtHint');
     if(txt.value.replace(/\s/g,'')){
       if(!state.textOn){ state.textOn=true; document.getElementById('txtOn').checked=true;
-        flash('题字已显示 · 在画面'+(state.textPos==='top'?'上方':'下方')); }
-      hint.textContent='已显示';
+        flash(T('题字已显示 · 在画面'+(state.textPos==='top'?'上方':'下方'),'Inscription shown · '+(state.textPos==='top'?'top':'bottom'))); }
+      hint.textContent=T('已显示','shown');
     }else{
-      hint.textContent='写上去即显示';
+      hint.textContent=T('写上去即显示','shows as you type');
     }
     draw();
   };
@@ -6312,7 +6758,7 @@ function buildUi(){
   tBg.onchange=function(){ state.textBg=tBg.checked; draw(); };
   sOn.onchange=function(){ state.sealOn=sOn.checked; draw(); };
   var posBox=document.getElementById('pos');
-  var POS=[['bottom','签条在下'],['top','签条在上']];
+  var POS=[['bottom',T('签条在下','Slip below')],['top',T('签条在上','Slip above')]];
   POS.forEach(function(p,pi){
     var b2=document.createElement('button');
     b2.className='chip use'; b2.type='button'; b2.textContent=p[1];
@@ -6328,7 +6774,7 @@ function buildUi(){
   var pairsBox=document.getElementById('pairs');
   PAIRS.forEach(function(p,pi){
     var b=document.createElement('button');
-    b.className='pair'; b.type='button'; b.title=p.n+' 配色';
+    b.className='pair'; b.type='button'; b.title=LF(p,'n')+T(' 配色',' colors');
     b.style.width='60px'; b.style.height='60px'; b.style.overflow='hidden'; b.style.borderRadius='10px';
     b.setAttribute('aria-pressed', (p.fg===state.fg&&p.bg===state.bg)?'true':'false');
     var tcv=document.createElement('canvas');
@@ -6370,7 +6816,7 @@ function buildUi(){
   buildSw(document.getElementById('bgs'),BGS,'bg');
 
   var symBox=document.getElementById('syms');
-  var SYMS=[['p1','单排'],['p2','左右对花'],['p4','四向对花']];
+  var SYMS=[['p1',T('单排','Single')],['p2',T('左右对花','Mirror ↔')],['p4',T('四向对花','Mirror ✥')]];
   SYMS.forEach(function(sp,si){
     var sb=document.createElement('button');
     sb.className='chip use'; sb.type='button'; sb.textContent=sp[1];
@@ -6383,7 +6829,7 @@ function buildUi(){
     symBox.appendChild(sb);
   });
 
-  var EXPS=[['png','PNG'],['jpg','JPG'],['svg','SVG'],['pdf','PDF'],['transpng','透明 PNG'],['webp','WebP']];
+  var EXPS=[['png','PNG'],['jpg','JPG'],['svg','SVG'],['pdf','PDF'],['transpng',T('透明 PNG','Transparent')],['webp','WebP']];
   var expBox=document.getElementById('exps');
   EXPS.forEach(function(e){
     var eb=document.createElement('button');
@@ -6396,7 +6842,7 @@ function buildUi(){
     expBox.appendChild(eb);
   });
   var cpBox=document.getElementById('copies');
-  [['css','复制平铺 CSS'],['swatch','复制配色']].forEach(function(c){
+  [['css',T('复制平铺 CSS','Copy tile CSS')],['swatch',T('复制配色','Copy colors')]].forEach(function(c){
     var cb=document.createElement('button');
     cb.className='chip use'; cb.type='button'; cb.textContent=c[1];
     cb.onclick=function(){ c[0]==='css'?copyCss():copySwatch(); };
@@ -6405,11 +6851,11 @@ function buildUi(){
 
   var moodBox=document.getElementById('moods');
   var MOODS=[
-    {n:'素雅', fg:'#3a3730', bg:'#faf7f0', lw:4, cells:12, sym:'p1'},
-    {n:'富丽', fg:'#c29238', bg:'#1b1917', lw:6, cells:8,  sym:'p4'},
-    {n:'古拙', fg:'#5a3a22', bg:'#e8dcc0', lw:8, cells:6,  sym:'p2'},
-    {n:'清冷', fg:'#2f5f70', bg:'#eef2f3', lw:3, cells:14, sym:'p1'},
-    {n:'民俗', fg:'#b23a2a', bg:'#fdf3e0', lw:7, cells:9,  sym:'p2'}
+    {n:T('素雅','Quiet'), fg:'#3a3730', bg:'#faf7f0', lw:4, cells:12, sym:'p1'},
+    {n:T('富丽','Opulent'), fg:'#c29238', bg:'#1b1917', lw:6, cells:8,  sym:'p4'},
+    {n:T('古拙','Rustic'), fg:'#5a3a22', bg:'#e8dcc0', lw:8, cells:6,  sym:'p2'},
+    {n:T('清冷','Cool'), fg:'#2f5f70', bg:'#eef2f3', lw:3, cells:14, sym:'p1'},
+    {n:T('民俗','Folk'), fg:'#b23a2a', bg:'#fdf3e0', lw:7, cells:9,  sym:'p2'}
   ];
   MOODS.forEach(function(m){
     var mb=document.createElement('button');
@@ -6431,7 +6877,7 @@ function buildUi(){
   var pmBtn=document.getElementById('pickMode');
   pmBtn.onclick=function(){
     pickTarget=(pickTarget==='fg')?'bg':'fg';
-    pmBtn.textContent=(pickTarget==='fg')?'设为纹色':'设为底色';
+    pmBtn.textContent=(pickTarget==='fg')?T('设为纹色','Set as ink'):T('设为底色','Set as paper');
   };
   function hex2(r,g,b){
     var s=function(v){ var t=v.toString(16); return t.length<2?'0'+t:t; };
@@ -6468,7 +6914,7 @@ function buildUi(){
   function renderPicked(list){
     pickedBox.innerHTML='';
     if(!list.length){
-      pickedBox.innerHTML='<span class="hint" style="margin:0">没读到颜色，换一张试试</span>';
+      pickedBox.innerHTML='<span class="hint" style="margin:0">'+T('没读到颜色，换一张试试','No colors found — try another photo')+'</span>';
       return;
     }
     list.forEach(function(c){
@@ -6478,7 +6924,7 @@ function buildUi(){
       cb.onclick=function(){
         state[pickTarget]=hx;
         syncSw(); syncPairs(); draw(); refreshThumbs();
-        flash((pickTarget==='fg'?'纹色 ':'底色 ')+hx);
+        flash((pickTarget==='fg'?T('纹色 ','Ink '):T('底色 ','Paper '))+hx);
       };
       pickedBox.appendChild(cb);
     });
@@ -6492,10 +6938,10 @@ function buildUi(){
     fr.onload=function(){
       var im=new Image();
       im.onload=function(){ renderPicked(pickColors(im)); };
-      im.onerror=function(){ flash('这张图读不了'); };
+      im.onerror=function(){ flash(T('这张图读不了','This image cannot be read')); };
       im.src=fr.result;
     };
-    fr.onerror=function(){ flash('文件读取失败'); };
+    fr.onerror=function(){ flash(T('文件读取失败','Could not read the file')); };
     fr.readAsDataURL(f);
     filePick.value='';
   });
@@ -6510,7 +6956,7 @@ function buildUi(){
   var AGE_STEPS=[0,25,55,85];
   function syncAge(){
     ageIn.value=state.age;
-    ageV.textContent=state.age?state.age+'%':'关';
+    ageV.textContent=state.age?state.age+'%':T('关','off');
     var kids=document.getElementById('ages').children;
     for(var i=0;i<kids.length;i++) kids[i].setAttribute('aria-pressed', AGE_STEPS[i]===state.age?'true':'false');
   }
@@ -6518,7 +6964,7 @@ function buildUi(){
   syncAge();
   ageIn.oninput=function(){ state.age=+ageIn.value; syncAge(); draw(); };
   var agesBox=document.getElementById('ages');
-  ['原纸','轻','中','重'].forEach(function(nm,ai){
+  [T('原纸','Paper'),T('轻','Light'),T('中','Medium'),T('重','Heavy')].forEach(function(nm,ai){
     var ab=document.createElement('button');
     ab.className='chip use'; ab.type='button'; ab.textContent=nm;
     ab.onclick=function(){ state.age=AGE_STEPS[ai]; syncAge(); draw(); };
@@ -6538,7 +6984,7 @@ function buildUi(){
       var ub=document.getElementById('uses');
       for(var i=0;i<ub.children.length;i++)
         ub.children[i].setAttribute('aria-pressed', USES[i].id==='custom'?'true':'false');
-      document.getElementById('useInfo').textContent='自定宽高';
+      document.getElementById('useInfo').textContent=T('自定宽高','Custom size');
       document.getElementById('cusBox').style.display='block';
     }
     draw();
@@ -6547,30 +6993,36 @@ function buildUi(){
   chIn.onchange=function(){ setSize(state.cw,+chIn.value); };
   var RATIOS=[
     {n:'1:1',w:2000,h:2000},{n:'3:4',w:1800,h:2400},{n:'4:5',w:2000,h:2500},
-    {n:'9:16',w:1440,h:2560},{n:'16:9',w:2560,h:1440},{n:'A4',w:2480,h:3508},{n:'名片',w:1050,h:600}
+    {n:'9:16',w:1440,h:2560},{n:'16:9',w:2560,h:1440},{n:'A4',w:2480,h:3508},{n:T('名片','Card'),w:1050,h:600}
   ];
   var rBox=document.getElementById('ratioBox');
   RATIOS.forEach(function(r){
     var rb=document.createElement('button');
     rb.className='chip use'; rb.type='button'; rb.textContent=r.n;
     rb.title=r.w+'×'+r.h;
-    rb.onclick=function(){ setSize(r.w,r.h); flash('已设为 '+r.w+' × '+r.h); };
+    rb.onclick=function(){ setSize(r.w,r.h); flash(T('已设为 ','Set to ')+r.w+' × '+r.h); };
     rBox.appendChild(rb);
   });
   document.getElementById('cusBox').style.display=(state.use==='custom')?'block':'none';
 
-  var nav=document.getElementById('topnav');
-  if(nav){
-    nav.addEventListener('click',function(e){
-      var b=e.target.closest?e.target.closest('button[data-doc]'):null;
-      if(b) openDoc(b.getAttribute('data-doc'));
-    });
-  }
-  var md=document.getElementById('modal');
-  if(md){
-    document.getElementById('mClose').onclick=closeDoc;
-    md.addEventListener('click',function(e){ if(e.target===md) closeDoc(); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDoc(); });
+  if(!buildUi.bound){
+    buildUi.bound=true;
+    var nav=document.getElementById('topnav');
+    if(nav){
+      nav.addEventListener('click',function(e){
+        var b=e.target.closest?e.target.closest('button[data-doc]'):null;
+        if(b) openDoc(b.getAttribute('data-doc'));
+      });
+    }
+    var md=document.getElementById('modal');
+    if(md){
+      document.getElementById('mClose').onclick=closeDoc;
+      md.addEventListener('click',function(e){ if(e.target===md) closeDoc(); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDoc(); });
+    }
+    var lb=document.getElementById('btnLang');
+    if(lb) lb.onclick=function(){ setLang(isEN()?'zh':'en'); };
+    window.addEventListener('resize',function(){ clearTimeout(buildUi._rt); buildUi._rt=setTimeout(draw,120); });
   }
 
   document.getElementById('btnPng').onclick=exportPng;
@@ -6583,24 +7035,22 @@ function buildUi(){
     state.lw=3+Math.floor(Math.random()*6);
     state.fg=p.fg; state.bg=p.bg;
     cells.value=state.cells; lw.value=state.lw;
-    document.getElementById('cellsV').textContent=state.cells+' 格';
+    document.getElementById('cellsV').textContent=T(state.cells+' 格',state.cells+' cells');
     document.getElementById('lwV').textContent=(state.lw/100).toFixed(2);
     syncMotifs();
     syncSw(); syncPairs();
     draw(); refreshThumbs();
   };
 
-  var rt;
-  window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(draw,120); });
 }
 
 /* ---------------- 菜单文稿 ---------------- */
 function cntG(g){ var c=0; for(var i=0;i<MOTIFS.length;i++) if(MOTIFS[i].g===g) c++; return c; }
 var DOCS={
-  help:{t:'使用说明',b:
+  help:{t:'使用说明', t_en:'Guide', b:
     '<h4>三步出一张图</h4>'+
     '<ul>'+
-    '<li><b>选地域 → 选纹样</b>：点一处地域，下面自动列出该地区的纹样，并帮你选中第一种；纹样左边的小图是它的实际样子。</li>'+
+    '<li><b>选地域 → 选图案元素</b>：点一处地域，下面自动列出该地区的图案元素，并帮你选中第一种；左边的小图是它的实际样子。</li>'+
     '<li><b>选用途</b>：手机壁纸、小红书、书签、纸胶带、A4 打印都有现成尺寸；要别的尺寸点「自定义」，直接填宽高像素。</li>'+
     '<li><b>导出</b>：右上角「导出图片」是 PNG，格式按钮那一排还有 JPG / SVG / PDF / 透明 PNG / WebP。</li>'+
     '</ul>'+
@@ -6621,14 +7071,43 @@ var DOCS={
     '</ul>'+
     '<h4>小技巧</h4>'+
     '<ul>'+
-    '<li>「换一个」随机换母题、配色与密度，撞到好看的就停下来。</li>'+
+    '<li>「换一个」随机换图案元素、配色与密度，撞到好看的就停下来。</li>'+
     '<li>透明 PNG 适合叠在自己拍的照片、请帖、PPT 上。</li>'+
     '<li>PDF 是 300dpi 原尺寸，直接送打印店。打印前把「图纸网格」关掉。</li>'+
     '<li>页面地址可以带参数固定一张图，例如 <code>?m=asanoha&amp;u=xhs34&amp;cells=8</code>。</li>'+
+    '</ul>',
+   b_en:
+    '<h4>Three steps to an image</h4>'+
+    '<ul>'+
+    '<li><b>Pick a region → pick a pattern</b>: tap a region and the patterns from that region are listed below, with the first one already selected. The small square on the left is what it really looks like.</li>'+
+    '<li><b>Pick a use</b>: phone wallpaper, social 3:4 or 1:1, bookmark, washi tape, A4 print — real sizes ready to go. Need something else? Choose Custom and type the pixel dimensions.</li>'+
+    '<li><b>Export</b>: “Export image” at the top right gives you a PNG; the format row also has JPG / SVG / PDF / transparent PNG / WebP.</li>'+
+    '</ul>'+
+    '<h4>Make it look handmade</h4>'+
+    '<ul>'+
+    '<li><b>Density</b>: more cells means a smaller unit and a finer weave. Weight is the thickness of the stroke.</li>'+
+    '<li><b>Margin</b>: how much blank space to leave. Bookmarks and tape look better with a little.</li>'+
+    '<li><b>Aging</b>: 40–60 looks most like old paper — yellowing, grain, water stains and darkened corners all at once. Baked into PNG/JPG/PDF, not into SVG.</li>'+
+    '<li><b>Inscription</b>: typing shows it straight away, no need to tick “Show”. You can put the slip above or below, and add a seal.</li>'+
+    '<li><b>Pick color from photo</b>: photograph old cloth, a brick or a piece of weathered wood and take its color. The image is read inside your browser only, never uploaded.</li>'+
+    '</ul>'+
+    '<h4>Combinations that work</h4>'+
+    '<ul>'+
+    '<li>Phone wallpaper + Hemp leaf + Quiet + aging 30: clean without being flat.</li>'+
+    '<li>A4 print + Baoxiang rosette + Opulent + Grid: a copy sheet to trace from.</li>'+
+    '<li>Tile asset + Mirror ✥: a 1024 seamless tile for web backgrounds or fabric printing.</li>'+
+    '<li>Bookmark + Falling petals + cream paper + inscription: a handmade-looking bookmark in two minutes.</li>'+
+    '</ul>'+
+    '<h4>Small tips</h4>'+
+    '<ul>'+
+    '<li>“Shuffle” changes the pattern, colors and density at random. Stop when something looks right.</li>'+
+    '<li>Transparent PNG is made for laying over your own photos, invitations or slides.</li>'+
+    '<li>PDF is 300 dpi at actual size — hand it straight to the print shop. Turn the grid off before printing.</li>'+
+    '<li>The page URL can pin one image, e.g. <code>?m=asanoha&amp;u=xhs34&amp;cells=8</code>.</li>'+
     '</ul>'},
-  about:{t:'关于纹谱',b:
-    '<p>纹谱是一个世界纹样的生成器。你选一种传统纹样、定一个用途，它就按几何规则算出一张四方连续的图——不是把图片素材拼起来，所以放到 A2 海报也不会糊。</p>'+
-    '<p>收录 '+MOTIFS.length+' 种母题：中国 '+cntG('cn')+' 种，日本 '+cntG('jp')+' 种，西亚·中亚 '+cntG('islam')+' 种，欧洲 '+cntG('eu')+' 种，非洲 '+cntG('af')+' 种，美洲 '+cntG('am')+' 种，亚太 '+cntG('ap')+' 种，每一种都写了来历与用法。地域是按纹样的主要流传地归的，很多纹样本来就跨着好几个文化，比如回纹与希腊回纹、佩斯利与克什米尔披肩。</p>'+
+  about:{t:'关于纹谱', t_en:'About Wenpu', b:
+    '<p>纹谱是一个世界图案生成器。你选一种传统图案、定一个用途，它就按几何规则算出一张四方连续的图——不是把图片素材拼起来，所以放到 A2 海报也不会糊。</p>'+
+    '<p>收录 '+MOTIFS.length+' 种图案元素：中国 '+cntG('cn')+' 种，日本 '+cntG('jp')+' 种，西亚·中亚 '+cntG('islam')+' 种，欧洲 '+cntG('eu')+' 种，非洲 '+cntG('af')+' 种，美洲 '+cntG('am')+' 种，亚太 '+cntG('ap')+' 种，每一种都写了来历与用法。地域是按图案的主要流传地归的，很多图案本来就跨着好几个文化，比如回纹与希腊回纹、佩斯利与克什米尔披肩。</p>'+
     '<h4>它特别的地方</h4>'+
     '<ul>'+
     '<li><b>一个 HTML 文件</b>：不联网、不装东西、不上传任何数据，双击就能用，手机也能开。</li>'+
@@ -6636,19 +7115,36 @@ var DOCS={
     '<li><b>对花是真的对花</b>：四向对花用镜像拼接，接缝处纹样连续，不是把格子硬拼在一起。</li>'+
     '<li><b>做旧是画上去的</b>：泛黄、纸颗粒、水渍、四角暗沉都是实时算的，不是套一张旧纸滤镜。</li>'+
     '</ul>'+
-    '<div class="kv">版本　v3.2（2026 年 11 月）<br>'+
+    '<div class="kv">版本　v3.3（2026 年 11 月）<br>'+
     '作者　永远的兰兰<br>'+
     '出品　兰斋丛编<br>'+
     '许可　MIT · 随便用、随便改、随便再发（含商用），留着作者署名就行<br>'+
     '技术　原生 HTML + Canvas 2D，SVG 与 PDF 为手写导出器，无第三方库</div>'+
     '<h4>给同好</h4>'+
-    '<p>母题的几何全部写在源码里，一种纹样一个函数，看得懂就能改。想加自己家乡的纹样，照着一个函数写就行。</p>'},
-  license:{t:'开源许可',b:
+    '<p>图案元素的几何全部写在源码里，一种图案一个函数，看得懂就能改。想加自己家乡的图案，照着一个函数写就行。</p>',
+   b_en:
+    '<p>Wenpu is a generator for the world’s patterns. Pick a traditional pattern, choose a use, and it computes a seamless repeat from geometric rules — it is not pasting picture assets together, so it stays sharp on an A2 poster.</p>'+
+    '<p>'+MOTIFS.length+' patterns are included: China '+cntG('cn')+', Japan '+cntG('jp')+', West &amp; Central Asia '+cntG('islam')+', Europe '+cntG('eu')+', Africa '+cntG('af')+', the Americas '+cntG('am')+', Asia-Pacific '+cntG('ap')+'. Each one comes with its origins and where it is used. Regions follow where a pattern mainly circulated; many patterns cross several cultures — the meander and the Greek key, paisley and the Kashmir shawl.</p>'+
+    '<h4>What makes it different</h4>'+
+    '<ul>'+
+    '<li><b>One HTML file</b>: no network, nothing to install, no data uploaded. Double-click to run, works on a phone too.</li>'+
+    '<li><b>Actually printable</b>: PDF comes out at 300 dpi actual size; washi tape 180×45 mm and bookmarks 50×150 mm are standard finished sizes.</li>'+
+    '<li><b>The repeat really joins</b>: four-way repeat mirrors the edges, so the pattern runs continuously across the seam instead of two grids butted together.</li>'+
+    '<li><b>The aging is drawn</b>: yellowing, paper grain, water stains and darkened corners are computed live, not a photo filter laid on top.</li>'+
+    '</ul>'+
+    '<div class="kv">Version　v3.3 (November 2026)<br>'+
+    'Author　Lanlan Eternal<br>'+
+    'Publisher　Lanzhai Collection<br>'+
+    'License　MIT — use, change and republish freely (commercial too), just keep the author credit<br>'+
+    'Built with　plain HTML + Canvas 2D; SVG and PDF come from handwritten exporters, no third-party libraries</div>'+
+    '<h4>For fellow makers</h4>'+
+    '<p>Every pattern’s geometry lives in the source: one pattern, one function. If you can read it, you can change it. To add a pattern from your own hometown, copy one function and start from there.</p>'},
+  license:{t:'开源许可', t_en:'License', b:
     '<p>纹谱用 <b>MIT 许可证</b>发布。</p>'+
     '<h4>你可以</h4>'+
     '<ul>'+
     '<li>随便用：个人用、商用、印出来卖都行。</li>'+
-    '<li>随便改：改代码、加母题、换配色、改成别的东西。</li>'+
+    '<li>随便改：改代码、加图案元素、换配色、改成别的东西。</li>'+
     '<li>随便传：原样或改过之后重新发布，都可以。</li>'+
     '</ul>'+
     '<h4>你只需要</h4>'+
@@ -6659,10 +7155,27 @@ var DOCS={
     '<h4>为什么选 MIT</h4>'+
     '<p>这种单文件小工具，限制越少越有用。有人想拿去做成自己的印刷模板、想塞进课堂讲义、想改成商标生成器，都不该被许可证挡住。要的只是别把作者名字抹掉。</p>'+
     '<p>如果你把它改成自己的版本再发布，建议在关于页加一句「基于纹谱」，这样用的人还能找回来。</p>'+
-    '<div class="kv">LICENSE 全文为标准 MIT，版权行：<br>Copyright (c) 2026 Lanlan Eternal</div>'},
-  disclaim:{t:'免责声明',b:
-    '<h4>关于纹样</h4>'+
-    '<p>本工具里的纹样，是对各民族传统几何纹样的<b>归纳与重绘</b>，不是对某一具体文物的摹本。传统纹样本身多属公共文化元素，但具体某件器物上的图案、某位设计师的再创作，可能另有版权。要做商业印刷，请自行确认。</p>'+
+    '<div class="kv">LICENSE 全文为标准 MIT，版权行：<br>Copyright (c) 2026 Lanlan Eternal</div>',
+   b_en:
+    '<p>Wenpu is released under the <b>MIT License</b>.</p>'+
+    '<h4>You may</h4>'+
+    '<ul>'+
+    '<li>Use it: personal, commercial, print it and sell the prints.</li>'+
+    '<li>Change it: edit the code, add patterns, swap colors, turn it into something else.</li>'+
+    '<li>Pass it on: republish it as is or modified.</li>'+
+    '</ul>'+
+    '<h4>You only need to</h4>'+
+    '<ul>'+
+    '<li><b>Keep the credit</b>: <code>Copyright (c) 2026 Lanlan Eternal</code> and this license notice must stay in the original and in any modified version. That is the only obligation MIT asks.</li>'+
+    '</ul>'+
+    '<p>MIT comes with no warranty: the software is provided “as is”, and the author is not liable if something goes wrong. That is a standard clause, not politeness.</p>'+
+    '<h4>Why MIT</h4>'+
+    '<p>A small single-file tool is more useful the fewer strings are attached. Someone may want to make it their own print template, drop it into a class handout, or turn it into a logo generator — a license should not stand in the way. All that is asked is that the author’s name stays.</p>'+
+    '<p>If you publish your own version, a line saying “based on Wenpu” on the About page helps people find their way back.</p>'+
+    '<div class="kv">The full LICENSE text is standard MIT. Copyright line:<br>Copyright (c) 2026 Lanlan Eternal</div>'},
+  disclaim:{t:'免责声明', t_en:'Disclaimer', b:
+    '<h4>关于图案</h4>'+
+    '<p>本工具里的图案，是对各民族传统几何图案的<b>归纳与重绘</b>，不是对某一具体文物的摹本。传统图案本身多属公共文化元素，但具体某件器物上的图案、某位设计师的再创作，可能另有版权。要做商业印刷，请自行确认。</p>'+
     '<p>科普文字写给普通人看，力求准确，但不是学术引用来源。写论文、做展览说明，请查原始文献与博物馆著录。</p>'+
     '<h4>关于你的数据</h4>'+
     '<p>全部计算在你的浏览器里完成。照片取色是把图片读进内存取几个颜色，图片不上传、不保存、不经过任何服务器。设置只存在你自己浏览器的 localStorage 里，清缓存就没了。</p>'+
@@ -6670,12 +7183,23 @@ var DOCS={
     '<p>屏幕颜色与印刷颜色本来就有差别，不同纸张、不同印刷机的效果也不一样。重要用途请先打小样。</p>'+
     '<p>软件按 MIT 许可「现状」提供，不对使用结果作任何担保。</p>'+
     '<h4>关于第三方</h4>'+
-    '<p>不使用任何第三方库、字体文件或图标包。中文字体调用系统自带的宋体/楷体，导出 SVG 时字体随系统而定。</p>'}
+    '<p>不使用任何第三方库、字体文件或图标包。中文字体调用系统自带的宋体/楷体，导出 SVG 时字体随系统而定。</p>',
+   b_en:
+    '<h4>About the patterns</h4>'+
+    '<p>The patterns here are <b>summaries and redrawings</b> of traditional geometric patterns from many cultures, not facsimiles of any single artifact. Traditional patterns are mostly public cultural material, but the design on one particular object, or a designer’s reinterpretation of it, may still be protected. Check before you print commercially.</p>'+
+    '<p>The notes are written for general readers and aim to be accurate, but they are not an academic source. For papers or exhibition labels, go to the original literature and museum catalogues.</p>'+
+    '<h4>About your data</h4>'+
+    '<p>Everything is computed in your browser. Color picking reads the image into memory and samples a few colors — the image is never uploaded, stored or sent to any server. Settings live only in your browser’s localStorage and disappear when you clear it.</p>'+
+    '<h4>About the output</h4>'+
+    '<p>Screen color and print color differ, and so do papers and presses. For anything important, make a proof first.</p>'+
+    '<p>The software is provided “as is” under the MIT License, without warranty of any kind regarding the results of its use.</p>'+
+    '<h4>About third parties</h4>'+
+    '<p>No third-party libraries, font files or icon packs are used. Chinese text is drawn with the system Song/Kai faces, so an exported SVG depends on the fonts installed where it is opened.</p>'}
 };
 function openDoc(id){
   var d=DOCS[id]; if(!d) return;
-  document.getElementById('mTitle').textContent=d.t;
-  document.getElementById('mBody').innerHTML=d.b;
+  document.getElementById('mTitle').textContent=T(d.t,d.t_en);
+  document.getElementById('mBody').innerHTML=T(d.b,d.b_en);
   document.getElementById('modal').classList.add('on');
   document.getElementById('mBody').scrollTop=0;
 }
@@ -6704,13 +7228,13 @@ function sheet(){
     var S=(big?440:230); c.width=S; c.height=S; c.style.cssText='width:100%;height:auto;display:block;border-radius:5px';
     render(c.getContext('2d'),S,S,{use:'tile',motif:m.id,cells:(m.tc||5),lw:5,margin:0,fg:'#b23a2a',bg:'#f3e9d6',seed:7,text:'',textOn:false,textBg:false,sealOn:false});
     var lab=document.createElement('div');
-    lab.textContent=m.name; lab.style.cssText='font-size:13px;color:#5f564a;margin-top:6px;letter-spacing:.16em';
+    lab.textContent=mName(m); lab.style.cssText='font-size:13px;color:#5f564a;margin-top:6px;letter-spacing:.16em';
     var nt=document.createElement('div');
-    nt.textContent=m.note; nt.style.cssText='font-size:10.5px;color:#8b8071;line-height:1.5;margin-top:3px;letter-spacing:.02em';
+    nt.textContent=mNote(m); nt.style.cssText='font-size:10.5px;color:#8b8071;line-height:1.5;margin-top:3px;letter-spacing:.02em';
     cell.appendChild(c); cell.appendChild(lab); cell.appendChild(nt); box.appendChild(cell);
   });
   document.querySelector('.wrap').appendChild(box);
-  document.getElementById('stat').textContent='样张 '+MOTIFS.length+'/'+MOTIFS.length;
+  document.getElementById('stat').textContent=T('样张 ','Sheet ')+MOTIFS.length+'/'+MOTIFS.length;
 }
 
 function qp(k){
@@ -6729,6 +7253,7 @@ if(location.search.indexOf('demo=1')>=0){
   state.text='月照松间'; state.textOn=true; state.sealOn=true;
   if(location.search.indexOf('use=xhs34')>=0) state.use='xhs34';
 }
+applyStatic();
 buildUi();
 if(location.search.indexOf('sheet=1')>=0) sheet(); else draw();
 })();
