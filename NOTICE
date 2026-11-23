@@ -1,0 +1,34 @@
+Wenpu - world pattern generator
+Copyright (c) 2026 Lanlan Eternal
+
+This software is released under the MIT License (see the LICENSE file).
+
+
+ATTRIBUTION
+-----------
+MIT asks exactly one thing of you: keep the copyright notice and the
+permission notice. Concretely, when you use, modify, or redistribute Wenpu,
+or publish something built on it, this line must stay visible:
+
+    Copyright (c) 2026 Lanlan Eternal
+
+in the source files, in the LICENSE file, and in the credits / about screen of
+any derived application, website, or printed matter.
+
+You do not need to ask permission, pay a fee, or publish your changes.
+
+
+NOT REQUIRED, BUT NICE
+----------------------
+If you republish a modified version under another name, a line such as
+"based on Wenpu by Lanlan Eternal" is appreciated - it lets people find the
+original. That is a courtesy, not a license condition.
+
+
+THIRD PARTY
+-----------
+Wenpu bundles no third-party libraries, fonts, images, or icon sets. Every
+pattern is computed geometrically at runtime by code written for this project.
+Chinese glyphs use fonts provided by the operating system. Historical pattern
+names and cultural background are common knowledge, summarised for general
+readers rather than quoted from a single source.
